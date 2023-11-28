@@ -15,7 +15,10 @@ public class TheaterControl {
     public TheaterControl(TheaterService theaterService) {
         this.theaterService = theaterService;
     }
-
+    @GetMapping("/{i}")
+    public List<TheaterModel> fetchTheaterDetails(@RequestBody int i){
+        return theaterService.fetchTheaterDetails(i);
+    }
     @PostMapping
     public String createTheaterDetails(@RequestBody TheaterModel theaterModel){
         theaterService.CreateTheaterDetails(theaterModel);

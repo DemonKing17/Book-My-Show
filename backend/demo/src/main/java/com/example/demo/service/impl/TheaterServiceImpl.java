@@ -19,4 +19,9 @@ public class TheaterServiceImpl implements TheaterService {
         theaterRepository.save(theaterModel);
         return "success";
     }
+
+    @Override
+    public List<TheaterModel> fetchTheaterDetails(int movieID) {
+        return theaterRepository.fetchTheaterDetails(movieID);
+    }
 }

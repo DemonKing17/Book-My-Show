@@ -7,9 +7,6 @@ import org.springframework.data.repository.query.Param;
 
 public interface MoviesRepository extends JpaRepository<MovieModel,String> {
 
-    @Query(value = "SELECT s FROM MovieModel s where name=:val")
+    @Query(value = "SELECT s FROM movies s where name=:val")
     public MovieModel fetchUsingName(@Param("val")String nammeee);
-
-
-
 }

@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface TheaterService {
     public String CreateTheaterDetails(TheaterModel theaterModel);
-
+    public List<TheaterModel> fetchTheaterDetails(int movieID);
 }
