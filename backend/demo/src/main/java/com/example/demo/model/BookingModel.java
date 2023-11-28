@@ -1,9 +1,7 @@
 package com.example.demo.model;
 
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import com.example.demo.model.MovieModel;
+import jakarta.persistence.*;
 
 import java.util.UUID;
 
@@ -12,9 +10,17 @@ import java.util.UUID;
 public class BookingModel {
 
     @Id
-    private String id;
+    @GeneratedValue
+    private int id;
+    private int show_id;
+    private int user_id;
+    private String booking_time;
+    private String payment_method;
+    private String getPayment_method;
+    private int seats;
+    private String seat_number;
 
-    public BookingModel(String show_id, String user_id, String booking_time, String payment_method, String getPayment_method, int seats, String seat_number) {
+    public BookingModel(int show_id, int user_id, String booking_time, String payment_method, String getPayment_method, int seats, String seat_number) {
         this.show_id = show_id;
         this.user_id = user_id;
         this.booking_time = booking_time;
@@ -22,36 +28,6 @@ public class BookingModel {
         this.getPayment_method = getPayment_method;
         this.seats = seats;
         this.seat_number = seat_number;
-    }
-
-    private String show_id;
-    private String user_id;
-    private String booking_time;
-    private String payment_method;
-    private String getPayment_method;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getShow_id() {
-        return show_id;
-    }
-
-    public void setShow_id(String show_id) {
-        this.show_id = show_id;
-    }
-
-    public String getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
     }
 
     public String getBooking_time() {
@@ -94,11 +70,32 @@ public class BookingModel {
         this.seat_number = seat_number;
     }
 
-    private int seats;
-    private String seat_number;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getShow_id() {
+        return show_id;
+    }
+
+    public void setShow_id(int show_id) {
+        this.show_id = show_id;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
 
     public BookingModel() {
-        this.id = UUID.randomUUID().toString();
+
     }
 
 

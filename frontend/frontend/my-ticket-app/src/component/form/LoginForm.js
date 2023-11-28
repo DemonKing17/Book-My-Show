@@ -8,7 +8,7 @@ const LoginForm = () => {
         <div className="container1">
           <div className="container2">
             <div className="heading">
-              <h3 className="heading-content">Register Here</h3>
+              <h3 className="heading-content">Login Here</h3>
             </div>
             <form>
               <label for="email">Email:</label>

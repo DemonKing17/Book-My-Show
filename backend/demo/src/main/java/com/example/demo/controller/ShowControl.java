@@ -17,32 +17,10 @@ public class ShowControl {
         this.showService = showService;
     }
 
-    @GetMapping("/{userID}")
-    public ShowModel getSingleShowDetails(@PathVariable("userID")String userID) {
-        return showService.GetShowDetails(userID);
-    }
-
-    @GetMapping
-    public List<ShowModel> getAllMovieDetails(){
-        return showService.GetAllShowDetails();
-    }
-
     @PostMapping
         public String createShowDetails(@RequestBody ShowModel showModel){
         showService.CreateShowDetails(showModel);
         return "created Successfully";
-    }
-
-    @PutMapping
-    public String updateShowDetails(@RequestBody ShowModel showModel){
-        showService.UpdateShowDetails(showModel);
-        return "user details updated";
-    }
-
-    @DeleteMapping("/{userID}")
-    public String deleteShowDetails(@PathVariable("userID") String userID){
-        showService.DeleteShowDetails(userID);
-        return "user details deleted";
     }
 
 }

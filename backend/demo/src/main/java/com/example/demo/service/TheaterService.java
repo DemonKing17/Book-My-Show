@@ -7,9 +7,5 @@ import java.util.List;
 
 public interface TheaterService {
     public String CreateTheaterDetails(TheaterModel theaterModel);
-    public String UpdateTheaterDetails(TheaterModel theaterModel);
 
-    public String DeleteTheaterDetails(String TheaterModel);
-    public TheaterModel GetTheaterDetails(String userID);
-    public List<TheaterModel> GetAllTheaterDetails();
 }

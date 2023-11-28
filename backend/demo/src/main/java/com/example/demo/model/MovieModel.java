@@ -1,10 +1,10 @@
 package com.example.demo.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
@@ -12,21 +12,22 @@ import java.util.UUID;
 public class MovieModel {
 
     @Id
-    private String id;
+    @GeneratedValue
+    private int id;
     private String title;
     private String summary;
     private String category;
-    private String release_date;
-    private String ending_date;
+    @DateTimeFormat
+    private LocalDate release_date;
+    @DateTimeFormat
+    private LocalDate ending_date;
     private String created_at;
-
     private String updated_at;
 
     public MovieModel() {
-        this.id = UUID.randomUUID().toString();
     }
 
-    public MovieModel(String title, String summary, String category, String release_date, String ending_date, String created_at, String updated_at) {
+    public MovieModel(String title, String summary, String category, LocalDate release_date, LocalDate ending_date, String created_at, String updated_at) {
         this.title = title;
         this.summary = summary;
         this.category = category;
@@ -38,11 +39,11 @@ public class MovieModel {
 
 
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -70,19 +71,19 @@ public class MovieModel {
         this.category = category;
     }
 
-    public String getRelease_date() {
+    public LocalDate getRelease_date() {
         return release_date;
     }
 
-    public void setRelease_date(String release_date) {
+    public void setRelease_date(LocalDate release_date) {
         this.release_date = release_date;
     }
 
-    public String getEnding_date() {
+    public LocalDate getEnding_date() {
         return ending_date;
     }
 
-    public void setEnding_date(String ending_date) {
+    public void setEnding_date(LocalDate ending_date) {
         this.ending_date = ending_date;
     }
 

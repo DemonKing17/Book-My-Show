@@ -8,14 +8,41 @@ import java.util.UUID;
 @Table(name = "user_register")
 public class UserModel {
     @Id
-    private String id;
+    @GeneratedValue
+    private int id;
+    private String fullname;
     private int age;
     private int phone;
     private String email_id;
     private String passwor;
     private String token;
 
-    public UserModel(int age, int phone, String email_id, String password,String token) {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public UserModel(String fullname, int age, int phone, String email_id, String password,String token) {
+        this.fullname=fullname;
         this.age = age;
         this.phone = phone;
         this.email_id = email_id;
@@ -24,14 +51,14 @@ public class UserModel {
     }
 
     public UserModel() {
-        this.id = UUID.randomUUID().toString();
+
     }
 
-    public String getUserID() {
+    public int getUserID() {
         return id;
     }
 
-    public void setUserID(String id){ this.id = id; }
+    public void setUserID(int id){ this.id = id; }
 
     public int getAge() {
         return age;

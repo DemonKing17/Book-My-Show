@@ -14,33 +14,14 @@ public class MoviesControl {
     public MoviesControl(MovieService movieService) {
         this.movieService = movieService;
     }
-
-    @GetMapping("/{userID}")
-    public MovieModel getSingleMovieDetails(@PathVariable("userID")String userID) {
-        return movieService.GetMovieDetails(userID);
+    @GetMapping
+    public String createUserDetails(@RequestBody MovieModel movieModel){
+        movieService.createUserDetails(movieModel);
+        return "Created Succesfully";
     }
 
     @GetMapping
-    public List<MovieModel> getAllMovieDetails(){
-        return movieService.GetAllMovieDetails();
+    public MovieModel fetchUsingName(String searchIn){
+        return fetchUsingName(searchIn);
     }
-
-    @PostMapping
-        public String createMovieDetails(@RequestBody MovieModel movieModel){
-        movieService.CreateMovieDetails(movieModel);
-        return "created Successfully";
-    }
-
-    @PutMapping
-    public String updateMovieDetails(@RequestBody MovieModel movieModel){
-        movieService.UpdateMovieDetails(movieModel);
-        return "user details updated";
-    }
-
-    @DeleteMapping("/{userID}")
-    public String deleteMoviesDetails(@PathVariable("userID") String userID){
-        movieService.DeleteMovieDetails(userID);
-        return "user details deleted";
-    }
-
 }

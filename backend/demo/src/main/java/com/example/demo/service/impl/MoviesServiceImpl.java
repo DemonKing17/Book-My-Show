@@ -13,31 +13,15 @@ public class MoviesServiceImpl implements MovieService {
     MoviesRepository moviesRepository;
 
     public MoviesServiceImpl(MoviesRepository moviesRepository){ this.moviesRepository = moviesRepository;}
+
     @Override
-    public String CreateMovieDetails(MovieModel movieModel) {
+    public String createUserDetails(MovieModel movieModel) {
         moviesRepository.save(movieModel);
-        return "success";
+        return "Success";
     }
 
     @Override
-    public String UpdateMovieDetails(MovieModel movieModel) {
-        moviesRepository.save(movieModel);
-        return "success";
-    }
-
-    @Override
-    public String DeleteMovieDetails(String userID) {
-        moviesRepository.deleteById(userID);
-        return "success";
-    }
-
-    @Override
-    public MovieModel GetMovieDetails(String userID) {
-        return moviesRepository.findById(userID).get();
-    }
-
-    @Override
-    public List<MovieModel> GetAllMovieDetails() {
-        return moviesRepository.findAll();
+    public MovieModel fetchUsingName(String name) {
+        return moviesRepository.fetchUsingName(name);
     }
 }

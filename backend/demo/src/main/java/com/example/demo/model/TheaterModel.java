@@ -1,8 +1,6 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.UUID;
 
@@ -11,7 +9,8 @@ import java.util.UUID;
 public class TheaterModel {
 
     @Id
-    private String id;
+    @GeneratedValue
+    private int id;
     private String theatre_name;
     private String location;
     private int capacity;
@@ -24,14 +23,14 @@ public class TheaterModel {
     }
 
     public TheaterModel() {
-        this.id = UUID.randomUUID().toString();
+
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

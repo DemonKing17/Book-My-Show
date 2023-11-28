@@ -6,9 +6,4 @@ import java.util.List;
 
 public interface BookingService {
     public String CreateBookingDetails(BookingModel bookingModel);
-    public String UpdateBookingDetails(BookingModel bookingModel);
-
-    public String DeleteBookingDetails(String userID);
-    public BookingModel GetBookingDetails(String userID);
-    public List<BookingModel> GetAllBookingDetails();
 }

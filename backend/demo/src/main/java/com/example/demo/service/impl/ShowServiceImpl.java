@@ -20,25 +20,4 @@ public class ShowServiceImpl implements ShowService {
         return "success";
     }
 
-    @Override
-    public String UpdateShowDetails(ShowModel showModel) {
-        showRepository.save(showModel);
-        return "success";
-    }
-
-    @Override
-    public String DeleteShowDetails(String userID) {
-        showRepository.deleteById(userID);
-        return "success";
-    }
-
-    @Override
-    public ShowModel GetShowDetails(String userID) {
-        return showRepository.findById(userID).get();
-    }
-
-    @Override
-    public List<ShowModel> GetAllShowDetails() {
-        return showRepository.findAll();
-    }
 }

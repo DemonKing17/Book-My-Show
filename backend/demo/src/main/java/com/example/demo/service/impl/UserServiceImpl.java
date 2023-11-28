@@ -22,25 +22,4 @@ public class UserServiceImpl implements UserService {
         return "Successfully created";
     }
 
-    @Override
-    public String UpdateUserDetails(UserModel userModel) {
-        userRepository.save(userModel);
-        return "Successfully Updated";
-    }
-
-    @Override
-    public String DeleteUserDetails(String userID) {
-        userRepository.deleteById(userID);
-        return "Successfully Deleted";
-    }
-
-    @Override
-    public UserModel GetUserDetails(String userID) {
-        return userRepository.findById(userID).get();
-    }
-
-    @Override
-    public List<UserModel> GetAllUserDetails() {
-        return userRepository.findAll();
-    }
 }

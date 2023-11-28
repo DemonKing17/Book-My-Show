@@ -1,9 +1,7 @@
 package com.example.demo.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.UUID;
 
@@ -11,14 +9,15 @@ import java.util.UUID;
 @Table(name = "shows")
 public class ShowModel {
     @Id
-    private String id;
+    @GeneratedValue
+    private int id;
     private String show_start_time;
     private String show_end_time;
-    private String movie_id;
-    private String theater_id;
+    private int movie_id;
+    private int theater_id;
     private int price;
 
-    public ShowModel(String show_start_time, String show_end_time, String movie_id, String theater_id, int price, String updated_at) {
+    public ShowModel(String show_start_time, String show_end_time, int movie_id, int theater_id, int price, String updated_at) {
         this.show_start_time = show_start_time;
         this.show_end_time = show_end_time;
         this.movie_id = movie_id;
@@ -26,11 +25,11 @@ public class ShowModel {
         this.price = price;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -50,19 +49,19 @@ public class ShowModel {
         this.show_end_time = show_end_time;
     }
 
-    public String getMovie_id() {
+    public int getMovie_id() {
         return movie_id;
     }
 
-    public void setMovie_id(String movie_id) {
+    public void setMovie_id(int movie_id) {
         this.movie_id = movie_id;
     }
 
-    public String getTheater_id() {
+    public int getTheater_id() {
         return theater_id;
     }
 
-    public void setTheater_id(String theater_id) {
+    public void setTheater_id(int theater_id) {
         this.theater_id = theater_id;
     }
 
@@ -75,7 +74,7 @@ public class ShowModel {
     }
 
     public ShowModel() {
-        this.id = UUID.randomUUID().toString();
+
     }
 
 

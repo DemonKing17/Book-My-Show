@@ -19,26 +19,4 @@ public class TheaterServiceImpl implements TheaterService {
         theaterRepository.save(theaterModel);
         return "success";
     }
-
-    @Override
-    public String UpdateTheaterDetails(TheaterModel theaterModel) {
-        theaterRepository.save(theaterModel);
-        return "success";
-    }
-
-    @Override
-    public String DeleteTheaterDetails(String userID) {
-        theaterRepository.deleteById(userID);
-        return "success";
-    }
-
-    @Override
-    public TheaterModel GetTheaterDetails(String userID) {
-        return theaterRepository.findById(userID).get();
-    }
-
-    @Override
-    public List<TheaterModel> GetAllTheaterDetails() {
-        return theaterRepository.findAll();
-    }
 }

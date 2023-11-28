@@ -22,25 +22,4 @@ public class BookingServiceImpl implements BookingService {
         return "success";
     }
 
-    @Override
-    public String UpdateBookingDetails(BookingModel bookingModel) {
-        bookingRepository.save(bookingModel);
-        return "success";
-    }
-
-    @Override
-    public String DeleteBookingDetails(String userID) {
-        bookingRepository.deleteById(userID);
-        return "success";
-    }
-
-    @Override
-    public BookingModel GetBookingDetails(String userID) {
-        return bookingRepository.findById(userID).get();
-    }
-
-    @Override
-    public List<BookingModel> GetAllBookingDetails() {
-        return bookingRepository.findAll();
-    }
 }
