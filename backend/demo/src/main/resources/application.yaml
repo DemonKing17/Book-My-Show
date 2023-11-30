@@ -5,6 +5,7 @@ spring:
     password: gayatri
 
 
+
   jpa:
     hibernate:
       ddl_auto: update

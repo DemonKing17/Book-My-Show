@@ -6,17 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
-@RequestMapping("/user")
+@RequestMapping("cinehub/v1/users")
 public class userControl {
     @Autowired
     UserService userService;
 
     @PostMapping("/register")
-    public ResponseEntity<String> createUserDetails(@RequestBody UserModel userModel, @RequestBody String password){
-        return userService.createUserDetails(userModel,password);
+    public ResponseEntity<String> createUserDetails(@RequestBody UserModel userModel){
+        return userService.createUserDetails(userModel);
     }
     @GetMapping("/login")
     public ResponseEntity<String> userLogin(@RequestBody String emailId,@RequestBody String password){

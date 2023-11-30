@@ -1,8 +1,32 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import "./RegistrationForm.css";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 const RegistrationForm = () => {
+  const { registerUserAction } = useContext(AuthContext);
+  //form data
+  const [formData, setFormData] = useState({
+    fullname: "",
+    email_id: "",
+    passwor: "",
+  });
+  //Destructure
+  const { fullname, email_id, passwor, age, phone } = formData;
+
+  //onChange
+  const onChangeInput = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  //Handle submit
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    if (!email_id || !passwor || !fullname || !age || !phone) {
+      return alert("Please provide all details");
+    }
+    registerUserAction(formData);
+  };
   return (
     <>
       <section className="container">
@@ -11,38 +35,46 @@ const RegistrationForm = () => {
             <div className="heading">
               <h3 className="heading-content">Register Here</h3>
             </div>
-            <form>
-              <label for="name">Name:</label>
-              <input type="text" id="name" name="name" required></input>
-
-              <label for="phone">Phone:</label>
+            <form onSubmit={onSubmitHandler}>
+              <label htmlFor="name">Name:</label>
               <input
+                type="text"
+                value={fullname}
+                onChange={onChangeInput}
+                name="fullname"
+              ></input>
+
+              <label htmlFor="phone">Phone:</label>
+              <input
+                value={phone}
                 type="tel"
-                id="phone"
                 name="phone"
-                pattern="[0-9]{10}"
-                required
+                onChange={onChangeInput}
+                pattern="[0-9]{6}"
               ></input>
 
-              <label for="age">Age:</label>
+              <label htmlFor="age">Age:</label>
               <input
+                value={age}
+                onChange={onChangeInput}
                 type="number"
-                id="age"
                 name="age"
-                min="6"
-                max="60"
-                required
               ></input>
 
-              <label for="email">Email:</label>
-              <input type="email" id="email" name="email" required></input>
-
-              <label for="password">Password:</label>
+              <label htmlFor="name">Email:</label>
               <input
+                value={email_id}
+                onChange={onChangeInput}
+                type="email"
+                name="email_id"
+              ></input>
+
+              <label htmlFor="password">Password:</label>
+              <input
+                value={passwor}
+                onChange={onChangeInput}
                 type="password"
-                id="password"
-                name="password"
-                required
+                name="passwor"
               ></input>
 
               <button className="reg-btn" type="submit">
@@ -50,7 +82,7 @@ const RegistrationForm = () => {
               </button>
               <p>
                 Already registered?{" "}
-                <Link to="/login" class="signin-button" type="button">
+                <Link to="/login" className="signin-button" type="button">
                   Sign In
                 </Link>
               </p>

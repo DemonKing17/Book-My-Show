@@ -6,7 +6,6 @@ import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -21,9 +20,9 @@ public class UserServiceImpl implements UserService {
     PasswordEncoder passwordEncoder;
 
     @Override
-    public ResponseEntity<String> createUserDetails(UserModel userModel, String password) {
+    public ResponseEntity<String> createUserDetails(UserModel userModel) {
         try {
-            userModel.setPasswor(passwordEncoder.encode(password));
+            userModel.setPasswor(passwordEncoder.encode(userModel.getPasswor()));
             userRepository.save(userModel);
             return new ResponseEntity<>("Successfully created", HttpStatus.CREATED);
         } catch (Exception e) {
@@ -31,6 +30,7 @@ public class UserServiceImpl implements UserService {
         }
         return new ResponseEntity<>("Successfully created", HttpStatus.CREATED);
     }
+
 
     public ResponseEntity<String> generateToken(String username, String password) {
         try{

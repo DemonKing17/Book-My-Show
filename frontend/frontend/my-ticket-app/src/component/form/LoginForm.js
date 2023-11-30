@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./RegistrationForm.css";
 
 const LoginForm = () => {
   return (
@@ -11,16 +12,11 @@ const LoginForm = () => {
               <h3 className="heading-content">Login Here</h3>
             </div>
             <form>
-              <label for="email">Email:</label>
-              <input type="email" id="email" name="email" required></input>
+              <label htmlFor="email_id">Email:</label>
+              <input type="email" name="email_id" required></input>
 
-              <label for="password">Password:</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                required
-              ></input>
+              <label htmlFor="passwor">Password:</label>
+              <input type="password" name="passwor" required></input>
 
               <button className="reg-btn" type="submit">
                 Login

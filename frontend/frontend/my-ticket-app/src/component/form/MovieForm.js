@@ -8,47 +8,26 @@ const MovieForm = () => {
         <div className="container1">
           <div className="container2">
             <div className="heading">
-              <h3 className="heading-content">Register Here</h3>
+              <h3 className="heading-content">Film Details</h3>
             </div>
             <form>
-              <label for="name">Image:</label>
-              <input
-                type="image"
-                id="imageI"
-                name="imageI"
-                src="ss"
-                required
-              ></input>
+              <label htmlFor="img">Image:</label>
+              <input type="file" name="img" accept="image/*" style={{}}></input>
 
-              <label for="phone">Title:</label>
-              <input
-                type="tel"
-                id="phone"
-                name="phone"
-                pattern="[0-9]{10}"
-                required
-              ></input>
+              <label htmlFor="title">Title:</label>
+              <input type="text" name="title"></input>
 
-              <label for="age">Age:</label>
-              <input
-                type="number"
-                id="age"
-                name="age"
-                min="6"
-                max="60"
-                required
-              ></input>
+              <label htmlFor="summary">Summary:</label>
+              <input type="text" name="summary"></input>
 
-              <label for="email">Email:</label>
-              <input type="email" id="email" name="email" required></input>
+              <label htmlFor="category">Category:</label>
+              <input type="text" name="category" required></input>
 
-              <label for="password">Password:</label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                required
-              ></input>
+              <label htmlFor="release_date">Releasing Date:</label>
+              <input type="date" name="release_date" required></input>
+
+              <label htmlFor="release_date">Releasing Date:</label>
+              <input type="date" name="release_date" required></input>
 
               <button className="reg-btn" type="submit">
                 Submit
