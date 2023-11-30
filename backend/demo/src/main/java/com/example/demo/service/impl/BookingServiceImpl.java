@@ -3,23 +3,19 @@ package com.example.demo.service.impl;
 import com.example.demo.model.BookingModel;
 import com.example.demo.repository.BookingRepository;
 import com.example.demo.service.BookingService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class BookingServiceImpl implements BookingService {
-
+    @Autowired
     BookingRepository bookingRepository;
-
-    public BookingServiceImpl(BookingRepository bookingRepository) {
-        this.bookingRepository = bookingRepository;
-    }
-
     @Override
-    public String CreateBookingDetails(BookingModel bookingModel) {
+    public String createBookingDetails(BookingModel bookingModel,int bookId) {
+        bookingModel.setShow_id(bookId);
         bookingRepository.save(bookingModel);
         return "success";
     }
-
 }

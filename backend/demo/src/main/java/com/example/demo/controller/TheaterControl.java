@@ -3,6 +3,8 @@ package com.example.demo.controller;
 
 import com.example.demo.model.TheaterModel;
 import com.example.demo.service.TheaterService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,14 +12,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/theater")
 public class TheaterControl {
+    @Autowired
     TheaterService theaterService;
-
-    public TheaterControl(TheaterService theaterService) {
-        this.theaterService = theaterService;
-    }
-    @GetMapping("/{i}")
-    public List<TheaterModel> fetchTheaterDetails(@RequestBody int i){
-        return theaterService.fetchTheaterDetails(i);
+    @GetMapping("/{movieID}")
+    public ResponseEntity<List<TheaterModel>> fetchTheaterDetails(@PathVariable int movieID){
+        return theaterService.fetchTheaterDetails(movieID);
     }
     @PostMapping
     public String createTheaterDetails(@RequestBody TheaterModel theaterModel){

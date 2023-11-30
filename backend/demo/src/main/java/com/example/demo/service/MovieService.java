@@ -1,13 +1,10 @@
 package com.example.demo.service;
-
 import com.example.demo.model.MovieModel;
-import org.springframework.data.repository.query.Param;
-
-import java.util.List;
+import org.springframework.http.ResponseEntity;
 
 public interface MovieService {
 
-    public String createUserDetails(MovieModel movieModel);
-    public MovieModel fetchUsingName(String name);
+    public ResponseEntity<String> createMovieDetails(MovieModel movieModel);
+    public ResponseEntity<MovieModel> fetchMovieUsingName(String name);
 }
 

@@ -1,10 +1,12 @@
 package com.example.demo.service;
 
 import com.example.demo.model.UserModel;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
 public interface UserService {
-    public String CreateUserDetails(UserModel userModel);
+    public ResponseEntity<String> createUserDetails(UserModel userModel,String password);
 
+    public ResponseEntity<String> generateToken(String emailId, String password);
 }

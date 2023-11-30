@@ -4,6 +4,8 @@ import com.example.demo.model.MovieModel;
 import com.example.demo.model.ShowModel;
 import com.example.demo.service.MovieService;
 import com.example.demo.service.ShowService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,16 +13,18 @@ import java.util.List;
 @RestController
 @RequestMapping("/shows")
 public class ShowControl {
+    @Autowired
     ShowService showService;
-
-    public ShowControl(ShowService showService) {
-        this.showService = showService;
-    }
-
     @PostMapping
-        public String createShowDetails(@RequestBody ShowModel showModel){
-        showService.CreateShowDetails(showModel);
-        return "created Successfully";
+    public ResponseEntity<String> createShowDetails(@RequestBody ShowModel showModel){
+        return showService.CreateShowDetails(showModel);
     }
-
+    @GetMapping("/{movieID}/{theaterID}")
+    public ResponseEntity<List<ShowModel>> fetchShowsUsingID(@PathVariable int movieID,@PathVariable int theaterID){
+        return showService.fetchShows(movieID,theaterID);
+    }
+    @GetMapping("/{showID}")
+    public ResponseEntity<List<ShowModel>> fetchSeats(@PathVariable int showID){
+        return showService.fetchSeats(showID);
+    }
 }

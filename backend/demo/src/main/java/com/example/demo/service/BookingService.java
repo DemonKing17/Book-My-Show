@@ -5,5 +5,5 @@ import com.example.demo.model.BookingModel;
 import java.util.List;
 
 public interface BookingService {
-    public String CreateBookingDetails(BookingModel bookingModel);
+    public String createBookingDetails(BookingModel bookingModel,int bookID);
 }
