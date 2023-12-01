@@ -7,7 +7,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Timestamp;
-import java.util.UUID;
 
 @Entity
 @Table(name = "user_register")
@@ -20,7 +19,6 @@ public class UserModel {
     private int age;
     private int phone;
     private String email_id;
-
     private String passwor;
     private String token;
     @CreationTimestamp
@@ -31,4 +29,15 @@ public class UserModel {
     public UserModel() {
     }
 
+    public UserModel(int id, String fullname, int age, int phone, String email_id, String passwor, String token, Timestamp created_at, Timestamp updated_at) {
+        this.id = id;
+        this.fullname = fullname;
+        this.age = age;
+        this.phone = phone;
+        this.email_id = email_id;
+        this.passwor = passwor;
+        this.token = token;
+        this.created_at = created_at;
+        this.updated_at = updated_at;
+    }
 }

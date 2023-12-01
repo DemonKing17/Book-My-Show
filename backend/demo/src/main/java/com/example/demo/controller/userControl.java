@@ -4,9 +4,10 @@ import com.example.demo.model.UserModel;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "*", allowedHeaders = "*")
+@CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "*")
 @RestController
 @RequestMapping("cinehub/v1/users")
 public class userControl {
@@ -14,6 +15,7 @@ public class userControl {
     UserService userService;
 
     @PostMapping("/register")
+    @PreAuthorize("hasAuthority('USER)")
     public ResponseEntity<String> createUserDetails(@RequestBody UserModel userModel){
         return userService.createUserDetails(userModel);
     }

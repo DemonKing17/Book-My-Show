@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import "./RegistrationForm.css";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
+import { AuthContext } from "../context/AuthContext/AuthContext";
 
 const RegistrationForm = () => {
   const { registerUserAction } = useContext(AuthContext);
@@ -47,18 +47,17 @@ const RegistrationForm = () => {
               <label htmlFor="phone">Phone:</label>
               <input
                 value={phone}
-                type="tel"
+                type="text"
                 name="phone"
                 onChange={onChangeInput}
-                pattern="[0-9]{6}"
               ></input>
 
               <label htmlFor="age">Age:</label>
               <input
                 value={age}
-                onChange={onChangeInput}
-                type="number"
+                type="text"
                 name="age"
+                onChange={onChangeInput}
               ></input>
 
               <label htmlFor="name">Email:</label>

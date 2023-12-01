@@ -7,7 +7,7 @@ import {
   REGISTER_SUCCESS,
 } from "./authActionTypes";
 import axios from "axios";
-import { API_URL_USER } from "../../utils/apiUrl";
+import { API_URL_USER } from "../../../utils/apiUrl";
 
 export const AuthContext = createContext();
 
