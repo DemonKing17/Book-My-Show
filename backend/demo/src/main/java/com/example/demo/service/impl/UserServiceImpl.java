@@ -23,6 +23,8 @@ public class UserServiceImpl implements UserService {
     public ResponseEntity<String> createUserDetails(UserModel userModel) {
         try {
             userModel.setPasswor(passwordEncoder.encode(userModel.getPasswor()));
+            String token = UUID.randomUUID().toString();
+            userModel.setToken(token);
             userRepository.save(userModel);
             return new ResponseEntity<>("Successfully created", HttpStatus.CREATED);
         } catch (Exception e) {
@@ -50,6 +52,11 @@ public class UserServiceImpl implements UserService {
             e.printStackTrace();
         }
         return new ResponseEntity<>("Token",HttpStatus.CREATED);
+    }
+
+    public boolean isUserValid(String token) {
+        int count = userRepository.getUserIdByToken(token);
+        return count > 0;
     }
 
     private UserModel loadUserByUsername(String username) {

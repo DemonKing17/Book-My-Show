@@ -12,4 +12,7 @@ public interface UserRepository extends JpaRepository <UserModel,String> {
     @Query(value = "SELECT u FROM UserModel u " +
             "WHERE u.email_id = :username")
     public UserModel findByUsername(@Param("username") String emailID);
+
+    @Query(value = "SELECT count(id) FROM UserModel u Where u.token = :token")
+    public int getUserIdByToken(@Param("token") String token);
 }

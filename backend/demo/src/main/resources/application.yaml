@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/onlinebookingsystem?useSSL=false
-    username: root
-    password: gayatri
+    url: jdbc:mysql://localhost:3306/my_sql?useSSL=false
+    username: sqlUser
+    password: sqlPassword
 
 
 
