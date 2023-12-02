@@ -18,8 +18,8 @@ public class MoviesControl {
         return movieService.createMovieDetails(movieModel);
     }
 
-    @GetMapping("/search")
-    public ResponseEntity<MovieModel> fetchMovieUsingName(String searchIn){
+    @GetMapping("/{name}")
+    public ResponseEntity<MovieModel> fetchMovieUsingName(@PathVariable String searchIn){
         return movieService.fetchMovieUsingName(searchIn);
     }
 }

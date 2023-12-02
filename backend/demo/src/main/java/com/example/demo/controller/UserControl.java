@@ -6,13 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin(origins = "http://localhost:3000", allowedHeaders = "*")
+
 @RestController
 @RequestMapping("cinehub/v1/users")
-public class userControl {
+@CrossOrigin("*")
+public class UserControl {
     @Autowired
     UserService userService;
-
     @PostMapping("/register")
     public ResponseEntity<String> createUserDetails(@RequestBody UserModel userModel){
         return userService.createUserDetails(userModel);

@@ -21,6 +21,8 @@ public class MovieModel {
     private int id;
     private String title;
     private String summary;
+    @Column(name = "img")
+    private String filename;
     private String category;
     @DateTimeFormat
     private LocalDate release_date;
@@ -32,7 +34,7 @@ public class MovieModel {
     private String updated_at;
 
 
-    public MovieModel(String title, String summary, String category, LocalDate release_date, LocalDate ending_date, String created_at, String updated_at) {
+    public MovieModel(String title,String filename, String summary, String category, LocalDate release_date, LocalDate ending_date, String created_at, String updated_at) {
         this.title = title;
         this.summary = summary;
         this.category = category;
@@ -40,6 +42,7 @@ public class MovieModel {
         this.ending_date = ending_date;
         this.created_at = created_at;
         this.updated_at = updated_at;
+        this.filename = filename;
     }
 
 }
