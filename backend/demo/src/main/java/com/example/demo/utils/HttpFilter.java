@@ -26,8 +26,10 @@ public class HttpFilter implements Filter {
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
         final String path = httpServletRequest.getRequestURI();
         System.out.println(path);
-        if (path == register || path == login) {
+        if (path.equals(register) || path.equals(login)) {
+            System.out.println("Inside auth skip");
             filterChain.doFilter(servletRequest,servletResponse);
+            return;
         } else {
             final String token = httpServletRequest.getHeader("token");
             if (token == null) {

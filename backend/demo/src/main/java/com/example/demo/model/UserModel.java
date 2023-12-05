@@ -17,7 +17,7 @@ public class UserModel {
     private int id;
     private String fullname;
     private int age;
-    private int phone;
+    private String phone;
     private String email_id;
     private String passwor;
     private String token;
@@ -29,7 +29,7 @@ public class UserModel {
     public UserModel() {
     }
 
-    public UserModel(int id, String fullname, int age, int phone, String email_id, String passwor, String token, Timestamp created_at, Timestamp updated_at) {
+    public UserModel(int id, String fullname, int age, String phone, String email_id, String passwor, String token, Timestamp created_at, Timestamp updated_at) {
         this.id = id;
         this.fullname = fullname;
         this.age = age;

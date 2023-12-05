@@ -107,7 +107,7 @@ const RegistrationForm = () => {
                   className="block mb-2 text-coolGray-800 font-medium"
                   htmlFor="passwor"
                 >
-                  :
+                  Phone:
                 </label>
                 <input
                   className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
@@ -118,13 +118,12 @@ const RegistrationForm = () => {
                 ></input>
               </div>
 
-              <Link
-                to="/login"
-                className="inline-block py-3 px-7 mb-6 w-full text-base text-green-50 font-medium text-center leading-6 bg-green-500 hover:bg-green-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-sm"
+              <button
+                className="inline-block py-3 px-7  mb-6 w-full text-base text-green-50 font-medium text-center leading-6 bg-green-500 hover:bg-green-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-sm"
                 type="submit"
               >
                 Register
-              </Link>
+              </button>
               <p>
                 Already registered?{" "}
                 <Link to="/login" className="signin-button" type="button">

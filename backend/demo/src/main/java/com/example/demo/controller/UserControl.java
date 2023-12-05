@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("cinehub/v1/users")
-@CrossOrigin("*")
 public class UserControl {
     @Autowired
     UserService userService;
@@ -17,7 +16,7 @@ public class UserControl {
     public ResponseEntity<String> createUserDetails(@RequestBody UserModel userModel){
         return userService.createUserDetails(userModel);
     }
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<String> userLogin(@RequestBody String emailId,@RequestBody String password){
         return userService.generateToken(emailId,password);
     }

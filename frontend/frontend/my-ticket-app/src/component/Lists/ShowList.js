@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-const ShowList = () => {
+const ShowList = (shows) => {
   return (
     <>
       <section className="h-screen bg-gradient-to-r from-green-500 to-blue-500">
@@ -12,9 +13,13 @@ const ShowList = () => {
               </p>
             </div>
             <div className="flex flex-col justify-center items-center gap-8 mt-8">
-              <div className="w-4/5 md:h-20 h-15 bg-white flex flex-row justify-between rounded-2xl">
-                <p className="md:p-4 p-3 md:text-4xl text-2xl">Name</p>
-                <p className="md:p-4 p-2 md:text-4xl text-2xl">Location</p>
+              <div className="w-4/5">
+                <Link to={`/seats`}>
+                  <div className=" md:h-20 h-15 bg-white flex flex-row justify-between rounded-2xl">
+                    <p className="md:p-4 p-3 md:text-4xl text-2xl">Time</p>
+                    <p className="md:p-4 p-2 md:text-4xl text-2xl">Date</p>
+                  </div>
+                </Link>
               </div>
             </div>
           </div>

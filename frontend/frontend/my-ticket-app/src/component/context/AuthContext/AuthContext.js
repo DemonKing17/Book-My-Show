@@ -82,7 +82,7 @@ export const AuthorContextProvider = ({ children }) => {
           payload: res.data,
         });
       }
-      window.location.href = "/dashboard";
+      window.location.href = "/";
     } catch (error) {
       dispatch({
         type: "LOGIN_FAILED",
@@ -106,8 +106,11 @@ export const AuthorContextProvider = ({ children }) => {
     const config = {
       headers: {
         "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
       },
     };
+    console.log("API called");
     try {
       const res = await axios.post(
         `${API_URL_USER}/register`,
