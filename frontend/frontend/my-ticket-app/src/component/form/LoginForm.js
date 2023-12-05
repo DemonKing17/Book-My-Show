@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext/AuthContext";
 
 const LoginForm = () => {
-  const { loginUserAction, userAuth } = useContext(AuthContext);
+  const { loginUserAction } = useContext(AuthContext);
   //form data
   const [formData, setFormData] = useState({
     email_id: "",
@@ -62,7 +62,7 @@ const LoginForm = () => {
                   value={passwor}
                   onChange={onChangeInput}
                   className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
-                  type="password"
+                  type="text"
                   name="passwor"
                   required
                 ></input>

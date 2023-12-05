@@ -25,9 +25,8 @@ public class HttpFilter implements Filter {
 
         HttpServletRequest httpServletRequest = (HttpServletRequest) servletRequest;
         final String path = httpServletRequest.getRequestURI();
-        System.out.println(path);
-        if (path.equals(register) || path.equals(login)) {
-            System.out.println("Inside auth skip");
+        final String method = httpServletRequest.getMethod();
+        if (path.equals(register) || path.equals(login) || method.equals("OPTIONS")) {
             filterChain.doFilter(servletRequest,servletResponse);
             return;
         } else {
@@ -40,11 +39,11 @@ public class HttpFilter implements Filter {
             boolean isValid = userService.isUserValid(token);
             if (isValid) {
                 filterChain.doFilter(servletRequest,servletResponse);
+                return;
             } else {
                 ((HttpServletResponse) servletResponse).setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 return;
             }
         }
-        filterChain.doFilter(servletRequest,servletResponse);
     }
 }

@@ -1,5 +1,5 @@
 CREATE TABLE user_register (
-    id int PRIMARY KEY,
+    id int PRIMARY KEY auto_increment,
     age int ,
     fullname varchar(255),
     phone varchar(255),
@@ -11,7 +11,7 @@ CREATE TABLE user_register (
 );
 
 CREATE TABLE movies (
-    id int PRIMARY KEY,
+    id int PRIMARY KEY auto_increment,
     img blob default null,
     title VARCHAR(255) NOT NULL,
     summary varchar(255),
@@ -19,16 +19,15 @@ CREATE TABLE movies (
     ending_date date default null,
     category varchar(255),
     created_at timestamp default current_timestamp,
-    updated_at vtimestamp
+    updated_at timestamp default current_timestamp
 );
 
-
 CREATE TABLE theaters (
-    id int PRIMARY KEY,
-    theatre_name varchar(255),
+    id int PRIMARY KEY auto_increment,
+    theater_name varchar(255),
     capacity int,
     location varchar(255),
-	created_at timestamp default current_timestamp,
+    created_at timestamp default current_timestamp,
     updated_at timestamp
 );
 

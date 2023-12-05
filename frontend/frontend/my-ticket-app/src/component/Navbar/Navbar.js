@@ -1,9 +1,11 @@
 import { Disclosure } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext/AuthContext";
 
 const Navbar = () => {
+  const { token, logoutAction } = useContext(AuthContext);
   return (
     <>
       <div className="text-center bg-black text-white py-2">
@@ -45,16 +47,15 @@ const Navbar = () => {
                     />
                   </div>
                   <div className="hidden md:ml-6 md:flex md:items-center md:space-x-4">
-                    <Link
-                      to="/"
-                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                    >
-                      Home
-                    </Link>
-
-                    {
+                    {token && (
                       <>
                         {" "}
+                        <Link
+                          to="/"
+                          className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                        >
+                          Home
+                        </Link>
                         <Link
                           to="/movie/create"
                           className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
@@ -74,9 +75,9 @@ const Navbar = () => {
                           Add Theater
                         </Link>
                       </>
-                    }
+                    )}
 
-                    {
+                    {!token && (
                       <>
                         <Link
                           to="/login"
@@ -91,15 +92,18 @@ const Navbar = () => {
                           Register
                         </Link>
                       </>
-                    }
+                    )}
 
-                    {
+                    {token && (
                       <>
-                        <button className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">
+                        <button
+                          onClick={logoutAction}
+                          className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                        >
                           Logout
                         </button>
                       </>
-                    }
+                    )}
                   </div>
                 </div>
               </div>

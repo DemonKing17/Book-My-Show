@@ -39,6 +39,7 @@ const reducer = (state, action) => {
     }
     case LOGIN_SUCCESS:
       localStorage.setItem("userAuth", JSON.stringify(payload));
+
       return {
         ...state,
         loading: false,
@@ -72,20 +73,23 @@ export const AuthorContextProvider = ({ children }) => {
     const config = {
       headers: {
         "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
       },
     };
     try {
       const res = await axios.post(`${API_URL_USER}/login`, formData, config);
-      if (res?.data?.status === "success") {
+      console.log(res);
+      if (res?.status === 200) {
         dispatch({
-          type: "LOGIN_SUCCESS",
+          type: LOGIN_SUCCESS,
           payload: res.data,
         });
       }
       window.location.href = "/";
     } catch (error) {
       dispatch({
-        type: "LOGIN_FAILED",
+        type: LOGIN_FAILED,
         payload: error?.response?.data?.message,
       });
     }
@@ -136,7 +140,7 @@ export const AuthorContextProvider = ({ children }) => {
       value={{
         loginUserAction,
         userAuth: state,
-        token: state?.userAuth?.token,
+        token: state?.userAuth,
         profile: state?.profile,
         error: state?.error,
         logoutAction,

@@ -17,7 +17,9 @@ public class UserControl {
         return userService.createUserDetails(userModel);
     }
     @PostMapping("/login")
-    public ResponseEntity<String> userLogin(@RequestBody String emailId,@RequestBody String password){
+    public ResponseEntity<String> userLogin(@RequestBody UserModel userModel){
+        String emailId = userModel.getEmail_id();
+        String password = userModel.getPasswor();
         return userService.generateToken(emailId,password);
     }
 }

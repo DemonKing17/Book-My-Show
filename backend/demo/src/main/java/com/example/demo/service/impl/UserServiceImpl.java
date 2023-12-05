@@ -47,11 +47,11 @@ public class UserServiceImpl implements UserService {
             userDetails.setToken(token);
             userRepository.save(userDetails);
 
-            return new ResponseEntity<>("Token",HttpStatus.CREATED);
+            return new ResponseEntity<>(userDetails.getToken(),HttpStatus.OK);
         }catch(Exception e){
             e.printStackTrace();
         }
-        return new ResponseEntity<>("Token",HttpStatus.CREATED);
+        return new ResponseEntity<>("Token",HttpStatus.OK);
     }
 
     public boolean isUserValid(String token) {

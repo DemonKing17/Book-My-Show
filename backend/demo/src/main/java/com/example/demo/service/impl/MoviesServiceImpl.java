@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.model.MovieListResponse;
 import com.example.demo.model.MovieModel;
 import com.example.demo.repository.MoviesRepository;
 import com.example.demo.service.MovieService;
@@ -14,6 +15,7 @@ import java.util.List;
 public class MoviesServiceImpl implements MovieService {
     @Autowired
     MoviesRepository moviesRepository;
+
     @Override
     public ResponseEntity<String> createMovieDetails(MovieModel movieModel) {
         try {
@@ -33,5 +35,16 @@ public class MoviesServiceImpl implements MovieService {
             e.printStackTrace();
         }
         return new ResponseEntity<>(moviesRepository.fetchUsingName(name),HttpStatus.OK);
+    }
+
+    @Override
+    public MovieListResponse fetchAllMovies() {
+        try {
+            List<MovieModel> movies = moviesRepository.findAll();
+            return new MovieListResponse(movies);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new MovieListResponse(null);
+        }
     }
 }

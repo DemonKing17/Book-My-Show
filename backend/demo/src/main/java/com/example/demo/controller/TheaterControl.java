@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/theater")
+@RequestMapping("cinehub/v1/theaters")
 public class TheaterControl {
     @Autowired
     TheaterService theaterService;
@@ -18,10 +18,8 @@ public class TheaterControl {
     public ResponseEntity<List<TheaterModel>> fetchTheaterDetails(@PathVariable int movieID){
         return theaterService.fetchTheaterDetails(movieID);
     }
-    @PostMapping
-    public String createTheaterDetails(@RequestBody TheaterModel theaterModel){
-        theaterService.CreateTheaterDetails(theaterModel);
-        return "created Successfully";
+    @PostMapping("/create")
+    public ResponseEntity<String> createTheaterDetails(@RequestBody TheaterModel theaterModel){
+        return theaterService.CreateTheaterDetails(theaterModel);
     }
-
 }

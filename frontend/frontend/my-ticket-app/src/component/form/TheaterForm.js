@@ -1,7 +1,32 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useContext } from "react";
+
+import { TheaterContext } from "../context/TheaterContext/TheaterContext";
 
 const TheaterForm = () => {
+  const { createTheaterDetails } = useContext(TheaterContext);
+  const [formData, setFormData] = useState({
+    theater_name: "",
+    capacity: "",
+    location: "",
+  });
+  const { theater_name, capacity, location } = formData;
+  const onChangeInput = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: name === "capacity" ? parseInt(value, 10) : value,
+    }));
+  };
+
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    if (!theater_name || !capacity || !location) {
+      return alert("Please provide all details");
+    }
+    createTheaterDetails(formData);
+  };
   return (
     <>
       <section className="h-full bg-gradient-to-r from-green-500 to-blue-500">
@@ -12,18 +37,20 @@ const TheaterForm = () => {
                 Add Theater
               </p>
             </div>
-            <form className="md:w-1/3 w-2/3 mt-4">
+            <form className="md:w-1/3 w-2/3 mt-4" onSubmit={onSubmitHandler}>
               <div className="mb-6">
                 <label
                   className="block mb-2 text-coolGray-800 font-medium"
-                  htmlFor="theatre_name"
+                  htmlFor="theater_name"
                 >
                   Theater Name:
                 </label>
                 <input
+                  onChange={onChangeInput}
                   className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                   type="text"
-                  name="theatre_name"
+                  name="theater_name"
+                  value={theater_name}
                 ></input>
               </div>
               <div className="mb-6">
@@ -34,25 +61,14 @@ const TheaterForm = () => {
                   Location:
                 </label>
                 <input
+                  onChange={onChangeInput}
                   className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                   type="text"
                   name="location"
+                  value={location}
                 ></input>
               </div>
-              <div className="mb-6">
-                <label
-                  className="block mb-2 text-coolGray-800 font-medium"
-                  htmlFor="category"
-                >
-                  Category:
-                </label>
-                <input
-                  className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
-                  type="text"
-                  name="category"
-                  required
-                ></input>
-              </div>
+
               <div className="mb-6">
                 <label
                   className="block mb-2 text-coolGray-800 font-medium"
@@ -61,20 +77,21 @@ const TheaterForm = () => {
                   Theater Capacity:
                 </label>
                 <input
+                  onChange={onChangeInput}
                   className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                   type="number"
                   name="capacity"
+                  value={capacity}
                   required
                 ></input>
               </div>
 
-              <Link
-                to="/home"
+              <button
                 className="inline-block py-3 px-7 mb-6 w-full text-base text-green-50 font-medium text-center leading-6 bg-green-500 hover:bg-green-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-sm"
                 type="submit"
               >
                 Submit
-              </Link>
+              </button>
             </form>
           </div>
         </div>

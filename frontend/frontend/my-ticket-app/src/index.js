@@ -4,11 +4,17 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { AuthorContextProvider } from "./component/context/AuthContext/AuthContext";
+import MovieContextProvider from "./component/context/MovieContext/MovieContext";
+import TheaterContextProvider from "./component/context/TheaterContext/TheaterContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <AuthorContextProvider>
-    <App />
+    <MovieContextProvider>
+      <TheaterContextProvider>
+        <App />
+      </TheaterContextProvider>
+    </MovieContextProvider>
   </AuthorContextProvider>
 );
 

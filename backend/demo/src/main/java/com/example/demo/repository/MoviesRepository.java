@@ -6,10 +6,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
+
 public interface MoviesRepository extends JpaRepository<MovieModel,String> {
-    @Query(value = "SELECT m FROM MovieModel m")
-    public ResponseEntity<String> createMovieDetails(MovieModel movieModel);
+
     @Query(value = "SELECT s FROM MovieModel s WHERE s.title=:val")
     public MovieModel fetchUsingName(@Param("val")String value);
+
 
 }

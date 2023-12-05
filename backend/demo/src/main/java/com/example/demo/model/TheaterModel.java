@@ -16,7 +16,7 @@ public class TheaterModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String theatre_name;
+    private String theater_name;
     private String location;
     private int capacity;
     @CreationTimestamp
@@ -27,8 +27,8 @@ public class TheaterModel {
     public TheaterModel() {
     }
 
-    public TheaterModel(String theatre_name, String location, int capacity,Timestamp created_at,Timestamp updated_at) {
-        this.theatre_name = theatre_name;
+    public TheaterModel(String theater_name, String location, int capacity,Timestamp created_at,Timestamp updated_at) {
+        this.theater_name = theater_name;
         this.location = location;
         this.capacity = capacity;
         this.created_at = created_at;

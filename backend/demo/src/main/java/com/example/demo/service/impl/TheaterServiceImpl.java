@@ -15,9 +15,14 @@ public class TheaterServiceImpl implements TheaterService {
     @Autowired
     TheaterRepository theaterRepository;
     @Override
-    public String CreateTheaterDetails(TheaterModel theaterModel) {
-        theaterRepository.save(theaterModel);
-        return "success";
+    public ResponseEntity<String> CreateTheaterDetails(TheaterModel theaterModel) {
+        try{
+            theaterRepository.save(theaterModel);
+            return new ResponseEntity<>("success",HttpStatus.OK);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return  new ResponseEntity<>("success",HttpStatus.OK);
     }
 
     @Override
