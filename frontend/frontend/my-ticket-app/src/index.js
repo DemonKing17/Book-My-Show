@@ -6,13 +6,16 @@ import reportWebVitals from "./reportWebVitals";
 import { AuthorContextProvider } from "./component/context/AuthContext/AuthContext";
 import MovieContextProvider from "./component/context/MovieContext/MovieContext";
 import TheaterContextProvider from "./component/context/TheaterContext/TheaterContext";
+import ShowContextProvider from "./component/context/ShowContext/ShowContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <AuthorContextProvider>
     <MovieContextProvider>
       <TheaterContextProvider>
-        <App />
+        <ShowContextProvider>
+          <App />
+        </ShowContextProvider>
       </TheaterContextProvider>
     </MovieContextProvider>
   </AuthorContextProvider>

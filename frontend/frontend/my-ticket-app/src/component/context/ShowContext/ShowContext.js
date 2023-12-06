@@ -1,54 +1,55 @@
 import { createContext, useReducer } from "react";
-import { API_URL_THEATER } from "../../../utils/apiUrl";
+import { API_URL_SHOW } from "../../../utils/apiUrl";
 import axios from "axios";
-import {
-  CREATE_THEATER_FAIL,
-  CREATE_THEATER_SUCESS,
-  FETCH_THEATER_FAIL,
-  FETCH_THEATER_SUCESS,
-} from "./theaterActionTypes";
 
-export const TheaterContext = createContext();
+import {
+  CREATE_SHOW_FAIL,
+  CREATE_SHOW_SUCESS,
+  FETCH_SHOW_FAIL,
+  FETCH_SHOW_SUCESS,
+} from "./showActionTypes";
+
+export const ShowContext = createContext();
 
 const INITIAL_STATE = {
   userAuth: JSON.parse(localStorage.getItem("userAuth")),
   loading: false,
   error: null,
-  theaters: [],
-  theater: null,
+  shows: [],
+  show: null,
 };
 
 const reducer = (state, action) => {
   const { type, payload } = action;
   switch (type) {
-    case CREATE_THEATER_SUCESS: {
+    case CREATE_SHOW_SUCESS: {
       return {
         ...state,
         loading: false,
         error: null,
-        theater: payload,
+        show: payload,
       };
     }
-    case CREATE_THEATER_FAIL: {
+    case CREATE_SHOW_FAIL: {
       return {
         ...state,
-        movie: null,
+        show: null,
         loading: false,
         error: payload,
       };
     }
-    case FETCH_THEATER_SUCESS: {
+    case FETCH_SHOW_SUCESS: {
       return {
         ...state,
         loading: false,
         error: null,
-        theaters: payload,
+        shows: payload,
       };
     }
-    case FETCH_THEATER_FAIL: {
+    case FETCH_SHOW_FAIL: {
       return {
         ...state,
-        theaterss: null,
+        shows: null,
         loading: false,
         error: payload,
       };
@@ -59,11 +60,11 @@ const reducer = (state, action) => {
   }
 };
 
-export const TheaterContextProvider = ({ children }) => {
+export const ShowContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
 
   //postMovie
-  const createTheaterDetails = async (formData) => {
+  const createShowDetails = async (formData) => {
     const config = {
       headers: {
         "content-Type": "application/json",
@@ -73,30 +74,26 @@ export const TheaterContextProvider = ({ children }) => {
       },
     };
     try {
-      const res = await axios.post(
-        `${API_URL_THEATER}/create`,
-        formData,
-        config
-      );
+      const res = await axios.post(`${API_URL_SHOW}/create`, formData, config);
       console.log(res);
       if (res?.status === 200) {
         console.log(res?.data);
         dispatch({
-          type: CREATE_THEATER_SUCESS,
+          type: CREATE_SHOW_SUCESS,
           payload: res?.data,
         });
       }
       window.location.href = "/";
     } catch (error) {
       dispatch({
-        type: CREATE_THEATER_FAIL,
+        type: CREATE_SHOW_FAIL,
         payload: error?.data?.response?.message,
       });
     }
   };
 
   //GetMovie List
-  const getTheaterDetails = async (param) => {
+  const getShowDetails = async (param) => {
     const config = {
       headers: {
         "content-type": "application/json",
@@ -106,33 +103,33 @@ export const TheaterContextProvider = ({ children }) => {
       },
     };
     try {
-      const res = await axios.get(`${API_URL_THEATER}/${param}`, config);
+      const res = await axios.get(`${API_URL_SHOW}/${param}`, config);
       if (res?.status === 200) {
         var data = res?.data;
         console.log(data);
         dispatch({
-          type: FETCH_THEATER_SUCESS,
+          type: FETCH_SHOW_SUCESS,
           payload: data,
         });
       }
     } catch (error) {
       dispatch({
-        type: FETCH_THEATER_FAIL,
+        type: FETCH_SHOW_FAIL,
         payload: error?.data?.response?.message,
       });
     }
   };
 
   return (
-    <TheaterContext.Provider
+    <ShowContext.Provider
       value={{
-        createTheaterDetails,
-        getTheaterDetails,
-        theaters: state?.theaters,
+        createShowDetails,
+        getShowDetails,
+        shows: state?.shows,
       }}
     >
       {children}
-    </TheaterContext.Provider>
+    </ShowContext.Provider>
   );
 };
-export default TheaterContextProvider;
+export default ShowContextProvider;

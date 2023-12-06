@@ -22,7 +22,7 @@ function App() {
         <Route path="/theater/create" element={<TheaterForm />}></Route>
         <Route path="/show/create" element={<ShowForm />}></Route>
         <Route path="/" element={<MovieList />}></Route>
-        <Route path="/theater/:id" element={<TheaterList />}></Route>
+        <Route path="/theaters/:id" element={<TheaterList />}></Route>
         <Route path="/shows/:mid/:tid" element={<ShowList />}></Route>
         <Route path="/seats" element={<SeatsList />}></Route>
       </Routes>

@@ -1,7 +1,38 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { ShowContext } from "../context/ShowContext/ShowContext";
 
 const ShowForm = () => {
+  const { createShowDetails } = useContext(ShowContext);
+
+  const [formData, setFormData] = useState({
+    movie_id: "",
+    theater_id: "",
+    show_time: "",
+    show_date: "",
+    price: "",
+  });
+
+  const { movie_id, theater_id, show_date, show_time, price } = formData;
+
+  const onChangeInput = (e) => {
+    const { name, value } = e.target;
+
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]:
+        name === "capacity" || "price" || "movie_id" || "theater_id"
+          ? parseInt(value, 10)
+          : value,
+    }));
+  };
+
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    if (!movie_id || !theater_id || !show_date || !show_time || !price) {
+      return alert("please provide all details");
+    }
+    createShowDetails(formData);
+  };
   return (
     <>
       <section className="h-full bg-gradient-to-r from-green-500 to-blue-500">
@@ -12,7 +43,7 @@ const ShowForm = () => {
                 Add Show
               </p>
             </div>
-            <form className="md:w-1/3 w-2/3 mt-4">
+            <form className="md:w-1/3 w-2/3 mt-4" onSubmit={onSubmitHandler}>
               <div className="mb-6">
                 <label
                   className="block mb-2 text-coolGray-800 font-medium"
@@ -21,6 +52,8 @@ const ShowForm = () => {
                   Movie ID:
                 </label>
                 <input
+                  onChange={onChangeInput}
+                  value={movie_id}
                   className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                   type="number"
                   name="movie_id"
@@ -34,6 +67,8 @@ const ShowForm = () => {
                   Theater ID:
                 </label>
                 <input
+                  onChange={onChangeInput}
+                  value={theater_id}
                   className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                   type="number"
                   name="theater_id"
@@ -41,7 +76,6 @@ const ShowForm = () => {
               </div>
 
               <div className="mb-6">
-                {" "}
                 <label
                   className="block mb-2 text-coolGray-800 font-medium"
                   htmlFor="show_time"
@@ -49,14 +83,13 @@ const ShowForm = () => {
                   Show Time:
                 </label>
                 <input
+                  onChange={onChangeInput}
+                  value={show_time}
                   className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                   type="time"
                   name="show_time"
-                  step={300}
-                  required
                 ></input>
               </div>
-
               <div className="mb-6">
                 <label
                   className="block mb-2 text-coolGray-800 font-medium"
@@ -65,20 +98,35 @@ const ShowForm = () => {
                   Show Date:
                 </label>
                 <input
+                  onChange={onChangeInput}
+                  value={show_date}
                   className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                   type="date"
                   name="show_date"
+                ></input>
+              </div>
+              <div className="mb-6">
+                <label
+                  className="block mb-2 text-coolGray-800 font-medium"
+                  htmlFor="price"
+                >
+                  Price:
+                </label>
+                <input
+                  onChange={onChangeInput}
+                  value={price}
+                  className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                  type="number"
+                  name="price"
                   required
                 ></input>
               </div>
-
-              <Link
-                to="/home"
+              <button
                 className="inline-block py-3 px-7 mb-6 w-full text-base text-green-50 font-medium text-center leading-6 bg-green-500 hover:bg-green-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-sm"
                 type="submit"
               >
-                Login
-              </Link>
+                Submit
+              </button>
             </form>
           </div>
         </div>

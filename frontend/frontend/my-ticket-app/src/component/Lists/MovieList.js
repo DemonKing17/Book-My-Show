@@ -55,7 +55,7 @@ const MovieList = () => {
                         key={movie?.id}
                         className="md:w-60 md:h-96 flex flex-col justify-center align-center "
                       >
-                        <Link to={`/theater/${movie?.id}`}>
+                        <Link to={`/theaters/${movie?.id}`}>
                           <p className="md:w-56 w-40 h-60 md:h-80 bg-white"></p>
                           <p className="text-white">{movie.title}</p>
                           <p className="text-white">Category</p>
