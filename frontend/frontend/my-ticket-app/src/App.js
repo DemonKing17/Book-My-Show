@@ -24,7 +24,7 @@ function App() {
         <Route path="/" element={<MovieList />}></Route>
         <Route path="/theaters/:id" element={<TheaterList />}></Route>
         <Route path="/shows/:mid/:tid" element={<ShowList />}></Route>
-        <Route path="/seats" element={<SeatsList />}></Route>
+        <Route path="/seats/:id" element={<SeatsList />}></Route>
       </Routes>
     </BrowserRouter>
   );

@@ -1,8 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.MovieModel;
 import com.example.demo.model.ShowModel;
-import com.example.demo.service.MovieService;
+
 import com.example.demo.service.ShowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,11 +10,11 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/shows")
+@RequestMapping("cinehub/v1/shows")
 public class ShowControl {
     @Autowired
     ShowService showService;
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<String> createShowDetails(@RequestBody ShowModel showModel){
         return showService.CreateShowDetails(showModel);
     }

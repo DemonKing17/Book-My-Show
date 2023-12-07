@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 // import { Link } from "react-router-dom";
 
 const TheaterList = () => {
-  const { getTheaterDetails, theaters } = useContext(TheaterContext);
+  const { getTheaterDetails, theater } = useContext(TheaterContext);
 
   const param = window.location.pathname;
   const arr = param.split("/");
@@ -13,7 +13,7 @@ const TheaterList = () => {
   M_id = parseInt(M_id, 10);
   useEffect(() => {
     getTheaterDetails(M_id);
-  }, []);
+  });
   return (
     <>
       <section className="h-screen bg-gradient-to-r from-green-500 to-blue-500">
@@ -25,17 +25,17 @@ const TheaterList = () => {
               </p>
             </div>
             <div className="flex flex-col justify-center items-center gap-8 mt-8">
-              {theaters?.length > 0 &&
-                theaters?.map((theater) => {
+              {theater?.length > 0 &&
+                theater?.map((theater) => {
                   return (
-                    <div className="w-4/5">
+                    <div className="w-4/5" key={theater?.id}>
                       <Link to={`/shows/${M_id}/${theater?.id}`}>
                         <div className="md:h-20 h-15 bg-white flex flex-row justify-between mb-5 rounded-2xl">
                           <p className="md:p-4 p-3 md:text-4xl text-2xl">
                             {theater?.theater_name}
                           </p>
                           <p className="md:p-4 p-2 md:text-4xl text-2xl">
-                            {theater?.location33333}
+                            {theater?.location}
                           </p>
                         </div>
                       </Link>

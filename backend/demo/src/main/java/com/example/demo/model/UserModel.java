@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -11,6 +12,8 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "user_register")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,18 +29,4 @@ public class UserModel {
     @UpdateTimestamp
     private Timestamp updated_at;
 
-    public UserModel() {
-    }
-
-    public UserModel(int id, String fullname, int age, String phone, String email_id, String passwor, String token, Timestamp created_at, Timestamp updated_at) {
-        this.id = id;
-        this.fullname = fullname;
-        this.age = age;
-        this.phone = phone;
-        this.email_id = email_id;
-        this.passwor = passwor;
-        this.token = token;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
-    }
 }

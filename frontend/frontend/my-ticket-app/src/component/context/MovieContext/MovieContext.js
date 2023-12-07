@@ -73,16 +73,13 @@ export const MovieContextProvider = ({ children }) => {
     };
     try {
       const res = await axios.post(`${API_URL_MOVIE}/create`, formData, config);
-      console.log(res);
       if (res?.status === 200) {
-        console.log(res?.data);
         dispatch({
           type: CREATE_MOVIES_SUCCESS,
           payload: res?.data,
         });
       }
     } catch (error) {
-      console.log(error);
       dispatch({
         type: CREATE_MOVIES_FAIL,
         payload: error?.data?.response?.message,
@@ -116,7 +113,6 @@ export const MovieContextProvider = ({ children }) => {
       });
     }
   };
-
   //get single movie detail
   const getMovie = async (title) => {
     const config = {
@@ -129,7 +125,7 @@ export const MovieContextProvider = ({ children }) => {
     };
     try {
       const res = await axios.get(`${API_URL_MOVIE}/${title}`, config);
-      if (res?.data?.status === 200) {
+      if (res?.status === 200) {
         dispatch({
           type: FETCH_MOVIE_SUCCESS,
           payload: res?.data,

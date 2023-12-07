@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/booking")
+@RequestMapping("cinehub/v1/booking")
 public class BookingControl {
     @Autowired
     BookingService bookingService;

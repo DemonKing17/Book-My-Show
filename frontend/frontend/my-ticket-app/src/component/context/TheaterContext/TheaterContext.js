@@ -42,7 +42,7 @@ const reducer = (state, action) => {
         ...state,
         loading: false,
         error: null,
-        theaters: payload,
+        theater: payload,
       };
     }
     case FETCH_THEATER_FAIL: {
@@ -109,7 +109,6 @@ export const TheaterContextProvider = ({ children }) => {
       const res = await axios.get(`${API_URL_THEATER}/${param}`, config);
       if (res?.status === 200) {
         var data = res?.data;
-        console.log(data);
         dispatch({
           type: FETCH_THEATER_SUCESS,
           payload: data,
@@ -128,7 +127,7 @@ export const TheaterContextProvider = ({ children }) => {
       value={{
         createTheaterDetails,
         getTheaterDetails,
-        theaters: state?.theaters,
+        theater: state?.theater,
       }}
     >
       {children}

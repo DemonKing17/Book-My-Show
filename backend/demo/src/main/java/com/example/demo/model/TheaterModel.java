@@ -1,7 +1,9 @@
 package com.example.demo.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -11,6 +13,9 @@ import java.util.UUID;
 @Entity
 @Table(name = "theaters")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+
 public class TheaterModel {
 
     @Id
@@ -23,16 +28,5 @@ public class TheaterModel {
     private Timestamp created_at;
     @UpdateTimestamp
     private Timestamp updated_at;
-
-    public TheaterModel() {
-    }
-
-    public TheaterModel(String theater_name, String location, int capacity,Timestamp created_at,Timestamp updated_at) {
-        this.theater_name = theater_name;
-        this.location = location;
-        this.capacity = capacity;
-        this.created_at = created_at;
-        this.updated_at = updated_at;
-    }
 
 }

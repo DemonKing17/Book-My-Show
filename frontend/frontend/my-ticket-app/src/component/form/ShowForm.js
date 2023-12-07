@@ -20,8 +20,10 @@ const ShowForm = () => {
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]:
-        name === "capacity" || "price" || "movie_id" || "theater_id"
+        name === "price" || name === "movie_id" || name === "theater_id"
           ? parseInt(value, 10)
+          : name === "show_time"
+          ? value
           : value,
     }));
   };
@@ -55,7 +57,7 @@ const ShowForm = () => {
                   onChange={onChangeInput}
                   value={movie_id}
                   className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
-                  type="number"
+                  type="text"
                   name="movie_id"
                 ></input>
               </div>
@@ -70,11 +72,10 @@ const ShowForm = () => {
                   onChange={onChangeInput}
                   value={theater_id}
                   className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
-                  type="number"
+                  type="text"
                   name="theater_id"
                 ></input>
               </div>
-
               <div className="mb-6">
                 <label
                   className="block mb-2 text-coolGray-800 font-medium"
@@ -116,7 +117,7 @@ const ShowForm = () => {
                   onChange={onChangeInput}
                   value={price}
                   className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
-                  type="number"
+                  type="text"
                   name="price"
                   required
                 ></input>

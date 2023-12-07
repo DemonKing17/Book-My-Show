@@ -13,8 +13,8 @@ public class BookingServiceImpl implements BookingService {
     @Autowired
     BookingRepository bookingRepository;
     @Override
-    public String createBookingDetails(BookingModel bookingModel,int bookId) {
-        bookingModel.setShow_id(bookId);
+    public String createBookingDetails(BookingModel bookingModel,int showId) {
+        bookingModel.setShow_id(showId);
         bookingRepository.save(bookingModel);
         return "success";
     }

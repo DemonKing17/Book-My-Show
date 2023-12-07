@@ -8,7 +8,7 @@ const MovieList = () => {
 
   useEffect(() => {
     getMovieDetails();
-  }, []);
+  });
 
   const onChangeInput = (e) => {
     setTitle(e.target.value);

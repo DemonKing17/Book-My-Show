@@ -43,13 +43,13 @@ const reducer = (state, action) => {
         ...state,
         loading: false,
         error: null,
-        shows: payload,
+        show: payload,
       };
     }
     case FETCH_SHOW_FAIL: {
       return {
         ...state,
-        shows: null,
+        show: null,
         loading: false,
         error: payload,
       };
@@ -75,25 +75,22 @@ export const ShowContextProvider = ({ children }) => {
     };
     try {
       const res = await axios.post(`${API_URL_SHOW}/create`, formData, config);
-      console.log(res);
       if (res?.status === 200) {
-        console.log(res?.data);
         dispatch({
           type: CREATE_SHOW_SUCESS,
           payload: res?.data,
         });
       }
-      window.location.href = "/";
     } catch (error) {
       dispatch({
         type: CREATE_SHOW_FAIL,
-        payload: error?.data?.response?.message,
+        payload: error?.response?.message,
       });
     }
   };
 
   //GetMovie List
-  const getShowDetails = async (param) => {
+  const getShowDetails = async (movie_id, theater_id) => {
     const config = {
       headers: {
         "content-type": "application/json",
@@ -103,10 +100,12 @@ export const ShowContextProvider = ({ children }) => {
       },
     };
     try {
-      const res = await axios.get(`${API_URL_SHOW}/${param}`, config);
+      const res = await axios.get(
+        `${API_URL_SHOW}/${movie_id}/${theater_id}`,
+        config
+      );
       if (res?.status === 200) {
         var data = res?.data;
-        console.log(data);
         dispatch({
           type: FETCH_SHOW_SUCESS,
           payload: data,
@@ -115,7 +114,7 @@ export const ShowContextProvider = ({ children }) => {
     } catch (error) {
       dispatch({
         type: FETCH_SHOW_FAIL,
-        payload: error?.data?.response?.message,
+        payload: error?.response?.message,
       });
     }
   };
@@ -125,7 +124,7 @@ export const ShowContextProvider = ({ children }) => {
       value={{
         createShowDetails,
         getShowDetails,
-        shows: state?.shows,
+        show: state?.show,
       }}
     >
       {children}
