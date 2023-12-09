@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
-public interface MoviesRepository extends JpaRepository<MovieModel,String> {
+public interface MoviesRepository extends JpaRepository<MovieModel,Integer> {
 
     @Query(value = "SELECT s FROM MovieModel s WHERE s.title=:val")
     public MovieModel fetchUsingName(@Param("val")String value);

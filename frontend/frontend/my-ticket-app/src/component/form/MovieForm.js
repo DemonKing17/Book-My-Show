@@ -10,7 +10,7 @@ const MovieForm = () => {
     summary: "",
     release_date: "",
     ending_date: "",
-    img: null,
+    img: "",
     category: "",
   });
   //Destructure
@@ -18,12 +18,7 @@ const MovieForm = () => {
 
   //onChange
   const onChangeInput = (e) => {
-    if (e.target.name === "img") {
-      const selectedFile = e.target.files[0];
-      setFormData({ ...formData, img: selectedFile });
-    } else {
-      setFormData({ ...formData, [e.target.name]: e.target.value });
-    }
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   //Handle submit
   const onSubmitHandler = (e) => {
@@ -52,12 +47,11 @@ const MovieForm = () => {
                   Image:
                 </label>
                 <input
-                  onChange={onChangeInput}
-                  className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
-                  type="file"
+                  type="text"
                   name="img"
                   value={img}
-                  accept="image/*"
+                  onChange={onChangeInput}
+                  className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
                 ></input>
               </div>
               <div className="mb-6">

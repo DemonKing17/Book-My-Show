@@ -7,6 +7,7 @@ import { AuthorContextProvider } from "./component/context/AuthContext/AuthConte
 import MovieContextProvider from "./component/context/MovieContext/MovieContext";
 import TheaterContextProvider from "./component/context/TheaterContext/TheaterContext";
 import ShowContextProvider from "./component/context/ShowContext/ShowContext";
+import BookingContextProvider from "./component/context/BookingContext/BookinContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -14,7 +15,9 @@ root.render(
     <MovieContextProvider>
       <TheaterContextProvider>
         <ShowContextProvider>
-          <App />
+          <BookingContextProvider>
+            <App />
+          </BookingContextProvider>
         </ShowContextProvider>
       </TheaterContextProvider>
     </MovieContextProvider>

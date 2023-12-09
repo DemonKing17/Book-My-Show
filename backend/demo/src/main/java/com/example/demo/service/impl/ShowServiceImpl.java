@@ -8,13 +8,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Service
 public class ShowServiceImpl implements ShowService {
     @Autowired
     ShowRepository showRepository;
-
     @Autowired
     TheaterServiceImpl theaterService;
     @Override
@@ -28,7 +28,17 @@ public class ShowServiceImpl implements ShowService {
         }
         return new ResponseEntity<>("success",HttpStatus.OK);
     }
-
+    public void setSlectedSeats(int showId,int[] selectedSeats){
+        ShowModel showModel=showRepository.findById(showId).get();
+        String selectSeat = showModel.getSelected_seat();
+        if(selectSeat==null){
+            selectSeat = Arrays.toString(selectedSeats).replaceAll("\\[|\\]", "");;
+        }else{
+            selectSeat = selectSeat+","+Arrays.toString(selectedSeats).replaceAll("\\[|\\]", "");;
+        }
+        showModel.setSelected_seat(selectSeat);
+        showRepository.save(showModel);
+    }
     @Override
     public ResponseEntity<List<ShowModel>> fetchShows(int movieID, int theaterID) {
         try{
@@ -40,13 +50,13 @@ public class ShowServiceImpl implements ShowService {
     }
 
     @Override
-    public ResponseEntity<List<ShowModel>> fetchSeats(int showID) {
+    public ResponseEntity<ShowModel> fetchSeats(int showID) {
         try{
-            return new ResponseEntity<>(showRepository.fetchSeats(showID),HttpStatus.OK);
+            return new ResponseEntity<ShowModel>(showRepository.fetchSeats(showID),HttpStatus.OK);
         }catch(Exception e){
             e.printStackTrace();
         }
-        return new ResponseEntity<>(showRepository.fetchS(showID),HttpStatus.OK);
+        return new ResponseEntity<ShowModel>(showRepository.fetchSeats(showID),HttpStatus.OK);
     }
 
 }

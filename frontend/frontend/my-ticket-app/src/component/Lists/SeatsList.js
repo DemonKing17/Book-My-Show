@@ -3,7 +3,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { ShowContext } from "../context/ShowContext/ShowContext";
 
 const SeatsList = () => {
-  const { getSeatsDetails, show } = useContext(ShowContext);
+  const { getSeatsDetails, createBookingDetails, show } =
+    useContext(ShowContext);
 
   const [selectedSeats, setSelectedSeats] = useState([]);
 
@@ -25,19 +26,27 @@ const SeatsList = () => {
   const arr = param.split("/");
   var S_id = arr[arr.length - 1];
   S_id = parseInt(S_id, 10);
-  console.log(S_id);
   useEffect(() => {
     getSeatsDetails(S_id);
-  }, []);
+  });
 
   const seatsTotal = [];
-  for (let index = 1; index <= show?.theater_capacity; index++) {
+  for (let index = 0; index <= show?.theater_capacity; index++) {
     seatsTotal[index] = false;
+  }
+  const onClickHandler = () => {
+    createBookingDetails(S_id, selectedSeats);
+  };
+  if (show?.selected_seat != null) {
+    let array = show?.selected_seat?.split(",").map((item) => item.trim());
+    for (let i = 0; i < array.length; i++) {
+      seatsTotal[array[i]] = true;
+    }
   }
 
   return (
     <>
-      <section className="bg-gradient-to-r from-green-500 to-blue-500">
+      <section className="">
         <div className="container md:px-12 md:py-12 md:mx-auto">
           <div className="mx-auto md:px-12 bg-white rounded-3xl bg-opacity-20 md:h-full ">
             <div className="mx-auto  ">
@@ -53,9 +62,9 @@ const SeatsList = () => {
                       <div
                         key={index}
                         className="w-8 h-8 border-2 text-center bg-black text-white"
-                        value={index + 1}
+                        value={index}
                       >
-                        {index + 1}
+                        {index}
                       </div>
                     ) : (
                       <button
@@ -63,12 +72,12 @@ const SeatsList = () => {
                         onClick={() => toggleSeat(index)}
                         className={`w-8 h-8 border-2 text-center ${
                           selectedSeats.includes(index)
-                            ? "bg-green"
+                            ? "bg-teal-700"
                             : "bg-white"
                         }`}
                         value={item}
                       >
-                        {index + 1}
+                        {index}
                       </button>
                     )}
                   </div>
@@ -80,7 +89,10 @@ const SeatsList = () => {
               <p className="border-b-8 border-spacing-8 rounded-full border-blue-500"></p>
             </div>
             <div className="text-center">
-              <button className="w-4/5 md:w-1/5 text-3xl mb-12 bg-rose-900 text-white p-3 rounded-3xl hover:text-4xl">
+              <button
+                className="w-4/5 md:w-1/5 text-3xl mb-12 bg-rose-900 text-white p-3 rounded-3xl hover:text-4xl "
+                onClick={onClickHandler}
+              >
                 Book Seats
               </button>
             </div>

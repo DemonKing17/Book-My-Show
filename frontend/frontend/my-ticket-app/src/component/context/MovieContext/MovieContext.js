@@ -4,6 +4,8 @@ import {
   CREATE_MOVIES_SUCCESS,
   FETCH_MOVIE_FAIL,
   FETCH_MOVIE_SUCCESS,
+  FETCH_MOVIES_FAIL,
+  FETCH_MOVIES_SUCCESS,
 } from "./movieActionTypes";
 import { API_URL_MOVIE } from "../../../utils/apiUrl";
 import axios from "axios";
@@ -37,7 +39,7 @@ const reducer = (state, action) => {
         error: payload,
       };
     }
-    case FETCH_MOVIE_SUCCESS: {
+    case FETCH_MOVIES_SUCCESS: {
       return {
         ...state,
         loading: false,
@@ -45,7 +47,7 @@ const reducer = (state, action) => {
         movies: payload,
       };
     }
-    case FETCH_MOVIE_FAIL: {
+    case FETCH_MOVIES_FAIL: {
       return {
         ...state,
         movies: null,
@@ -102,17 +104,18 @@ export const MovieContextProvider = ({ children }) => {
       if (res?.status === 200) {
         var data = res?.data;
         dispatch({
-          type: FETCH_MOVIE_SUCCESS,
+          type: FETCH_MOVIES_SUCCESS,
           payload: data,
         });
       }
     } catch (error) {
       dispatch({
-        type: FETCH_MOVIE_FAIL,
+        type: FETCH_MOVIES_FAIL,
         payload: error?.data?.response?.message,
       });
     }
   };
+
   //get single movie detail
   const getMovie = async (title) => {
     const config = {

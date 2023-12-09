@@ -23,8 +23,7 @@ public class UserServiceImpl implements UserService {
     public ResponseEntity<String> createUserDetails(UserModel userModel) {
         try {
             userModel.setPasswor(passwordEncoder.encode(userModel.getPasswor()));
-            String token = UUID.randomUUID().toString();
-            userModel.setToken(token);
+
             userRepository.save(userModel);
             return new ResponseEntity<>("Successfully created", HttpStatus.CREATED);
         } catch (Exception e) {
@@ -32,8 +31,14 @@ public class UserServiceImpl implements UserService {
         }
         return new ResponseEntity<>("Successfully created", HttpStatus.CREATED);
     }
-
-
+    public int getUserId(String token){
+        try{
+            return userRepository.getUserIdByToken(token);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return userRepository.getUserIdByToken(token);
+    }
     public ResponseEntity<String> generateToken(String username, String password) {
         try{
             UserModel userDetails = loadUserByUsername(username);

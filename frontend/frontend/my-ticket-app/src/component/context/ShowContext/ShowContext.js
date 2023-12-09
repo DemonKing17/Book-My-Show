@@ -1,8 +1,10 @@
 import { createContext, useReducer } from "react";
-import { API_URL_SHOW } from "../../../utils/apiUrl";
+import { API_URL_BOOKING, API_URL_SHOW } from "../../../utils/apiUrl";
 import axios from "axios";
 
 import {
+  CREATE_BOOKING_FAIL,
+  CREATE_BOOKING_SUCCESS,
   CREATE_SHOW_FAIL,
   CREATE_SHOW_SUCESS,
   FETCH_SHOW_FAIL,
@@ -15,7 +17,6 @@ const INITIAL_STATE = {
   userAuth: JSON.parse(localStorage.getItem("userAuth")),
   loading: false,
   error: null,
-  shows: [],
   show: null,
 };
 
@@ -47,6 +48,22 @@ const reducer = (state, action) => {
       };
     }
     case FETCH_SHOW_FAIL: {
+      return {
+        ...state,
+        show: null,
+        loading: false,
+        error: payload,
+      };
+    }
+    case CREATE_BOOKING_SUCCESS: {
+      return {
+        ...state,
+        loading: false,
+        error: null,
+        show: payload,
+      };
+    }
+    case CREATE_BOOKING_FAIL: {
       return {
         ...state,
         show: null,
@@ -118,6 +135,8 @@ export const ShowContextProvider = ({ children }) => {
       });
     }
   };
+
+  //getAll Seats
   const getSeatsDetails = async (showId) => {
     const config = {
       headers: {
@@ -129,7 +148,6 @@ export const ShowContextProvider = ({ children }) => {
     };
     try {
       const res = await axios.get(`${API_URL_SHOW}/seats/${showId}`, config);
-      console.log(res);
       if (res?.status === 200) {
         var data = res?.data;
         dispatch({
@@ -144,6 +162,37 @@ export const ShowContextProvider = ({ children }) => {
       });
     }
   };
+
+  //create Booking details
+  const createBookingDetails = async (S_id, selectedSeats) => {
+    const config = {
+      headers: {
+        "content-Type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+        token: `${state?.userAuth}`,
+      },
+    };
+    try {
+      const res = await axios.post(
+        `${API_URL_BOOKING}/seats/${S_id}`,
+        selectedSeats,
+        config
+      );
+      if (res?.status === 200) {
+        dispatch({
+          type: CREATE_BOOKING_SUCCESS,
+          payload: res?.data,
+        });
+      }
+      window.location.href = "/booking";
+    } catch (error) {
+      dispatch({
+        type: CREATE_BOOKING_FAIL,
+        payload: error?.response?.message,
+      });
+    }
+  };
   return (
     <ShowContext.Provider
       value={{
@@ -151,6 +200,7 @@ export const ShowContextProvider = ({ children }) => {
         getShowDetails,
         getSeatsDetails,
         show: state?.show,
+        createBookingDetails,
       }}
     >
       {children}

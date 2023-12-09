@@ -80,7 +80,6 @@ export const TheaterContextProvider = ({ children }) => {
       );
       console.log(res);
       if (res?.status === 200) {
-        console.log(res?.data);
         dispatch({
           type: CREATE_THEATER_SUCESS,
           payload: res?.data,

@@ -10,6 +10,7 @@ import Navbar from "./component/Navbar/Navbar";
 import TheaterList from "./component/Lists/TheaterList";
 import ShowList from "./component/Lists/ShowList";
 import SeatsList from "./component/Lists/SeatsList";
+import BookingList from "./component/Lists/BookingList";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/theaters/:id" element={<TheaterList />}></Route>
         <Route path="/shows/:mid/:tid" element={<ShowList />}></Route>
         <Route path="/seats/:id" element={<SeatsList />}></Route>
+        <Route path="/booking" element={<BookingList />}></Route>
       </Routes>
     </BrowserRouter>
   );

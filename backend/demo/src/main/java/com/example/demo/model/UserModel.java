@@ -23,6 +23,7 @@ public class UserModel {
     private String phone;
     private String email_id;
     private String passwor;
+    private Boolean admin;
     private String token;
     @CreationTimestamp
     private Timestamp created_at;
