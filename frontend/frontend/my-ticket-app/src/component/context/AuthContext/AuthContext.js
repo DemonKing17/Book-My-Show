@@ -141,8 +141,6 @@ export const AuthorContextProvider = ({ children }) => {
         loginUserAction,
         userAuth: state,
         token: state?.userAuth,
-        profile: state?.profile,
-        error: state?.error,
         logoutAction,
         registerUserAction,
       }}

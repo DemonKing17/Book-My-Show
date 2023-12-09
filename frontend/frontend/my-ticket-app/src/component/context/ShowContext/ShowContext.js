@@ -118,12 +118,38 @@ export const ShowContextProvider = ({ children }) => {
       });
     }
   };
-
+  const getSeatsDetails = async (showId) => {
+    const config = {
+      headers: {
+        "content-type": "application/json",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+        token: `${state?.userAuth}`,
+      },
+    };
+    try {
+      const res = await axios.get(`${API_URL_SHOW}/seats/${showId}`, config);
+      console.log(res);
+      if (res?.status === 200) {
+        var data = res?.data;
+        dispatch({
+          type: FETCH_SHOW_SUCESS,
+          payload: data,
+        });
+      }
+    } catch (error) {
+      dispatch({
+        type: FETCH_SHOW_FAIL,
+        payload: error?.data?.response?.message,
+      });
+    }
+  };
   return (
     <ShowContext.Provider
       value={{
         createShowDetails,
         getShowDetails,
+        getSeatsDetails,
         show: state?.show,
       }}
     >

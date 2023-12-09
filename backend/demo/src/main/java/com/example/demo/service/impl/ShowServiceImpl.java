@@ -46,7 +46,7 @@ public class ShowServiceImpl implements ShowService {
         }catch(Exception e){
             e.printStackTrace();
         }
-        return new ResponseEntity<>(showRepository.fetchSeats(showID),HttpStatus.OK);
+        return new ResponseEntity<>(showRepository.fetchS(showID),HttpStatus.OK);
     }
 
 }

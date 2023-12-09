@@ -22,7 +22,7 @@ public class ShowControl {
     public ResponseEntity<List<ShowModel>> fetchShowsUsingID(@PathVariable int movieID,@PathVariable int theaterID){
         return showService.fetchShows(movieID,theaterID);
     }
-    @GetMapping("/{showID}")
+    @GetMapping("/seats/{showID}")
     public ResponseEntity<List<ShowModel>> fetchSeats(@PathVariable int showID){
         return showService.fetchSeats(showID);
     }

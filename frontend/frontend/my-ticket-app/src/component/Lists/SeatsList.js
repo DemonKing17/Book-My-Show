@@ -1,6 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
-const SeatsList = (seats) => {
+import { ShowContext } from "../context/ShowContext/ShowContext";
+
+const SeatsList = () => {
+  const { getSeatsDetails, show } = useContext(ShowContext);
+
   const [selectedSeats, setSelectedSeats] = useState([]);
 
   const toggleSeat = (index) => {
@@ -17,14 +21,20 @@ const SeatsList = (seats) => {
       setSelectedSeats((prevSelectedSeats) => [...prevSelectedSeats, index]);
     }
   };
+  const param = window.location.pathname;
+  const arr = param.split("/");
+  var S_id = arr[arr.length - 1];
+  S_id = parseInt(S_id, 10);
+  console.log(S_id);
+  useEffect(() => {
+    getSeatsDetails(S_id);
+  }, []);
 
-  const se = [];
-  for (let index = 0; index < 200; index++) {
-    se[index] = false;
+  const seatsTotal = [];
+  for (let index = 1; index <= show?.theater_capacity; index++) {
+    seatsTotal[index] = false;
   }
-  for (let index = 0; index < 200; index += 3) {
-    se[index] = true;
-  }
+
   return (
     <>
       <section className="bg-gradient-to-r from-green-500 to-blue-500">
@@ -36,7 +46,7 @@ const SeatsList = (seats) => {
               </p>
             </div>
             <div className="m-4 flex flex-wrap gap-2">
-              {se.map((item, index) => {
+              {seatsTotal.map((item, index) => {
                 return (
                   <div key={index}>
                     {item === true ? (
