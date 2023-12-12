@@ -16,6 +16,7 @@ The Movie Ticket Booking App is a web application designed to facilitate the boo
 
 - **User Registration:** Allow users to create accounts with a valid email address.
 - **User Login:** Provide a secure login mechanism for registered users.
+  ![Screenshot 2023-12-12 123454](https://github.com/DemonKing17/Book-My-Show/assets/95963664/89a2beea-9ad6-4813-904b-322e07b60512)
 
 ### 2. Movie Listings
 
@@ -32,6 +33,7 @@ The Movie Ticket Booking App is a web application designed to facilitate the boo
 - **Seating Layout:** Display a seating layout for each showtime.
 - **Seat Selection:** Enable users to choose seats for booking.
 - **Seat Availability:** Clearly indicate available and booked seats.
+  ![Screenshot 2023-12-12 123235](https://github.com/DemonKing17/Book-My-Show/assets/95963664/57411226-1661-498f-a00f-dc3bc208203a)
 
 ### 5. Booking Confirmation
 
@@ -63,8 +65,6 @@ The Movie Ticket Booking App is a web application designed to facilitate the boo
 ### 11. External APIs
 
 - **Integration:** Integrate with external APIs for fetching movie details, images, and showtime information.
-
-
 
 ## Development Steps
 
