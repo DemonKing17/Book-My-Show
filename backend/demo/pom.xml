@@ -62,13 +62,6 @@
 			<artifactId>lombok</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>commons-io</groupId>
-			<artifactId>commons-io</artifactId>
-			<!-- Use the latest version -->
-		</dependency>
-
-
 	</dependencies>
 	<build>
 		<plugins>
