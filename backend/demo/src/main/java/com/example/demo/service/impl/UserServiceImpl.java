@@ -39,12 +39,12 @@ public class UserServiceImpl implements UserService {
         }
         return userRepository.getUserIdByToken(token);
     }
-    public ResponseEntity<String> generateToken(String username, String password) {
+    public ResponseEntity<UserModel> generateToken(String username, String password) {
         try{
             UserModel userDetails = loadUserByUsername(username);
 
             if (!passwordEncoder.matches(password, userDetails.getPasswor())) {
-                return new ResponseEntity<>("Failed to Login", HttpStatus.UNAUTHORIZED);
+                throw null;
             }
 
             String token = UUID.randomUUID().toString();
@@ -52,11 +52,11 @@ public class UserServiceImpl implements UserService {
             userDetails.setToken(token);
             userRepository.save(userDetails);
 
-            return new ResponseEntity<>(userDetails.getToken(),HttpStatus.OK);
+            return new ResponseEntity<>(userRepository.getLoginDetails(username),HttpStatus.OK);
         }catch(Exception e){
             e.printStackTrace();
         }
-        return new ResponseEntity<>("Token",HttpStatus.OK);
+        return new ResponseEntity<>(userRepository.getLoginDetails(username),HttpStatus.OK);
     }
 
     public boolean isUserValid(String token) {

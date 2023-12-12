@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext/AuthContext";
 
 const Navbar = () => {
-  const { token, logoutAction } = useContext(AuthContext);
+  const { token, logoutAction, user_type } = useContext(AuthContext);
+
   return (
     <>
       <div className="text-center bg-black text-white py-2">
@@ -49,13 +50,23 @@ const Navbar = () => {
                   <div className="hidden md:ml-6 md:flex md:items-center md:space-x-4">
                     {token && (
                       <>
-                        {" "}
                         <Link
                           to="/"
                           className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                         >
                           Home
                         </Link>
+                        <Link
+                          to="/booking"
+                          className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                        >
+                          Bookings
+                        </Link>
+                      </>
+                    )}
+                    {token && user_type === "Admin" && (
+                      <>
+                        {" "}
                         <Link
                           to="/movie/create"
                           className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
@@ -74,12 +85,16 @@ const Navbar = () => {
                         >
                           Add Theater
                         </Link>
-                        <Link
-                          to="/booking"
+                      </>
+                    )}
+                    {token && (
+                      <>
+                        <button
+                          onClick={logoutAction}
                           className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                         >
-                          Bookings
-                        </Link>
+                          Logout
+                        </button>
                       </>
                     )}
 
@@ -99,17 +114,6 @@ const Navbar = () => {
                         </Link>
                       </>
                     )}
-
-                    {token && (
-                      <>
-                        <button
-                          onClick={logoutAction}
-                          className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
-                        >
-                          Logout
-                        </button>
-                      </>
-                    )}
                   </div>
                 </div>
               </div>
@@ -118,48 +122,72 @@ const Navbar = () => {
             {/* Mobile */}
             <Disclosure.Panel className="md:hidden">
               <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
-                <Link
-                  to="/"
-                  className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
-                >
-                  Home
-                </Link>
-
-                {
+                {token && (
                   <>
                     <Link
-                      to="/dashboard"
-                      className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                      to="/"
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    >
+                      Home
+                    </Link>
+                    <Link
+                      to="/booking"
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    >
+                      Bookings
+                    </Link>
+                  </>
+                )}
+                {token && user_type === "Admin" && (
+                  <>
+                    {" "}
+                    <Link
+                      to="/movie/create"
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                     >
                       Add Movie
                     </Link>
-                  </>
-                }
-
-                {
-                  <>
                     <Link
-                      to="/login"
-                      className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                      to="/show/create"
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    >
+                      Add Show
+                    </Link>
+                    <Link
+                      to="/theater/create"
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                     >
                       Add Theater
                     </Link>
+                  </>
+                )}
+                {token && (
+                  <>
+                    <button
+                      onClick={logoutAction}
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    >
+                      Logout
+                    </button>
+                  </>
+                )}
+
+                {!token && (
+                  <>
+                    <Link
+                      to="/login"
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                    >
+                      Login
+                    </Link>
                     <Link
                       to="/register"
-                      className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                      className="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"
                     >
                       Register
                     </Link>
                   </>
-                }
-
-                {
-                  <>
-                    <button className="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">
-                      Logout
-                    </button>
-                  </>
-                }
+                )}
               </div>
             </Disclosure.Panel>
           </>

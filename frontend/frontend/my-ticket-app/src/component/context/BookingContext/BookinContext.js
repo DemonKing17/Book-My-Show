@@ -46,7 +46,7 @@ export const BookingContextProvider = ({ children }) => {
         "content-type": "application/json",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-        token: `${state?.userAuth}`,
+        token: `${state?.userAuth?.token}`,
       },
     };
     try {

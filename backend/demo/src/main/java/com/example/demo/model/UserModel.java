@@ -19,15 +19,12 @@ public class UserModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String fullname;
-    private int age;
-    private String phone;
+    private String user_type;
     private String email_id;
     private String passwor;
-    private Boolean admin;
     private String token;
     @CreationTimestamp
     private Timestamp created_at;
     @UpdateTimestamp
     private Timestamp updated_at;
-
 }

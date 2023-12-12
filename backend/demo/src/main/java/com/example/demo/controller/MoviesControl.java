@@ -28,8 +28,8 @@ public class MoviesControl {
             return ResponseEntity.status(500).body(response);
         }
     }
-    @GetMapping("/{name}")
-    public ResponseEntity<MovieModel> fetchMovieUsingName(@PathVariable String searchIn){
+    @GetMapping("/getmovie")
+    public ResponseEntity<MovieModel> fetchMovieUsingName(@RequestBody String searchIn){
         return movieService.fetchMovieUsingName(searchIn);
     }
 }

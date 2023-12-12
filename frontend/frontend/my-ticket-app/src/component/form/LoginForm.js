@@ -26,7 +26,7 @@ const LoginForm = () => {
 
   return (
     <>
-      <section className=" bg-gradient-to-r from-green-500 to-blue-500">
+      <section className=" ">
         <div className="container md:px-12 md:py-12 md:mx-auto">
           <div className="mx-auto md:px-12 bg-white flex  items-center flex-col rounded-3xl bg-opacity-20 md:h-screen ">
             <div className="mx-auto  ">
@@ -44,10 +44,11 @@ const LoginForm = () => {
                 </label>
                 <input
                   value={email_id}
-                  className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                  className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-opacity-50"
                   type="email"
                   name="email_id"
                   onChange={onChangeInput}
+                  placeholder="*****@gmail.com"
                   required
                 ></input>
               </div>
@@ -61,22 +62,27 @@ const LoginForm = () => {
                 <input
                   value={passwor}
                   onChange={onChangeInput}
-                  className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
-                  type="text"
+                  className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-slate-700  focus:ring-opacity-50"
+                  type="password"
                   name="passwor"
+                  placeholder="********"
                   required
                 ></input>
               </div>
 
               <button
-                className="inline-block py-3 px-7 mb-6 w-full text-base text-green-50 font-medium text-center leading-6 bg-green-500 hover:bg-green-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-sm"
+                className="inline-block py-3 px-7 mb-6 w-full text-base text-green-50 font-medium text-center leading-6 bg-green-500 hover:bg-green-600 focus:ring-2 focus:ring-slate-700  focus:ring-opacity-50 rounded-md shadow-sm"
                 type="submit"
               >
                 Login
               </button>
               <p>
                 Not registered?{" "}
-                <Link to="/" className="signin-button" type="button">
+                <Link
+                  to="/register"
+                  className="signin-button text-indigo-700"
+                  type="button"
+                >
                   Sign up
                 </Link>
               </p>

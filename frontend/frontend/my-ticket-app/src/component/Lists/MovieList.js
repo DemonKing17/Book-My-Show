@@ -4,22 +4,25 @@ import { useContext, useEffect, useState } from "react";
 
 const MovieList = () => {
   const { getMovie, getMovieDetails, movies, mov } = useContext(MovieContext);
-  const [title, setTitle] = useState("");
-
-  useEffect(() => {
-    getMovieDetails();
+  const [formData, setformData] = useState({
+    title: "",
   });
 
+  const { title } = formData;
+  useEffect(() => {
+    getMovieDetails();
+  }, []);
+
   const onChangeInput = (e) => {
-    setTitle(e.target.value);
+    setformData(e.target.value);
   };
   let x = false;
   const onClickHandler = (e) => {
-    if (!title) {
+    if (!formData?.title) {
       return alert("Please provide Movie Name");
     } else {
       x = true;
-      getMovie(title);
+      getMovie(formData);
     }
   };
   return (
@@ -39,6 +42,7 @@ const MovieList = () => {
                 className="md:w-full p-1 border border-gray-300 rounded"
                 name="titles"
                 onChange={onChangeInput}
+                value={title}
               />
               <button
                 onClick={onClickHandler}
@@ -60,7 +64,7 @@ const MovieList = () => {
                 </div>
               ) : (
                 <div className="flex-row flex-wrap flex justify-evenly gap-5">
-                  {movies?.movieList?.length > 0 &&
+                  {movies?.movieList?.length > 0 ? (
                     movies?.movieList?.map((movie) => {
                       return (
                         <div
@@ -68,13 +72,20 @@ const MovieList = () => {
                           className="md:w-60 md:h-96 flex flex-col justify-center align-center "
                         >
                           <Link to={`/theaters/${movie?.id}`}>
-                            <p className="md:w-56 w-40 h-60 md:h-80 bg-black"></p>
+                            <img
+                              className="md:w-56 w-40 h-60 md:h-80 "
+                              alt={movie?.title}
+                              src={movie?.img}
+                            />
                             <p className="">{movie?.title}</p>
                             <p className="">{movie?.category}</p>
                           </Link>
                         </div>
                       );
-                    })}
+                    })
+                  ) : (
+                    <p>No Movies Available</p>
+                  )}
                 </div>
               )}
             </div>

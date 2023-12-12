@@ -87,7 +87,7 @@ export const ShowContextProvider = ({ children }) => {
         "content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-        token: `${state?.userAuth}`,
+        token: `${state?.userAuth?.token}`,
       },
     };
     try {
@@ -98,6 +98,7 @@ export const ShowContextProvider = ({ children }) => {
           payload: res?.data,
         });
       }
+      window.location.href = "/";
     } catch (error) {
       dispatch({
         type: CREATE_SHOW_FAIL,
@@ -113,7 +114,7 @@ export const ShowContextProvider = ({ children }) => {
         "content-type": "application/json",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-        token: `${state?.userAuth}`,
+        token: `${state?.userAuth?.token}`,
       },
     };
     try {
@@ -143,7 +144,7 @@ export const ShowContextProvider = ({ children }) => {
         "content-type": "application/json",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-        token: `${state?.userAuth}`,
+        token: `${state?.userAuth?.token}`,
       },
     };
     try {
@@ -170,7 +171,7 @@ export const ShowContextProvider = ({ children }) => {
         "content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-        token: `${state?.userAuth}`,
+        token: `${state?.userAuth?.token}`,
       },
     };
     try {

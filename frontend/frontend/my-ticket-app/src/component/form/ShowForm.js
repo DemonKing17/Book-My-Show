@@ -37,7 +37,7 @@ const ShowForm = () => {
   };
   return (
     <>
-      <section className="h-full bg-gradient-to-r from-green-500 to-blue-500">
+      <section className="">
         <div className="container md:px-12 md:py-12 md:mx-auto h-">
           <div className="mx-auto md:px-12 bg-white rounded-3xl flex justify-center items-center flex-col bg-opacity-20 md:h-full ">
             <div className="mx-auto  ">
@@ -56,9 +56,11 @@ const ShowForm = () => {
                 <input
                   onChange={onChangeInput}
                   value={movie_id}
-                  className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                  className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-slate-700 focus:ring-opacity-50"
                   type="text"
                   name="movie_id"
+                  placeholder="Movie Id"
+                  required
                 ></input>
               </div>
               <div className="mb-6">
@@ -71,9 +73,11 @@ const ShowForm = () => {
                 <input
                   onChange={onChangeInput}
                   value={theater_id}
-                  className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                  className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-slate-700  focus:ring-opacity-50"
                   type="text"
                   name="theater_id"
+                  placeholder="Theater Id"
+                  required
                 ></input>
               </div>
               <div className="mb-6">
@@ -86,7 +90,7 @@ const ShowForm = () => {
                 <input
                   onChange={onChangeInput}
                   value={show_time}
-                  className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                  className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-slate-700  focus:ring-opacity-50"
                   type="time"
                   name="show_time"
                 ></input>
@@ -101,7 +105,7 @@ const ShowForm = () => {
                 <input
                   onChange={onChangeInput}
                   value={show_date}
-                  className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                  className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-slate-700  focus:ring-opacity-50"
                   type="date"
                   name="show_date"
                 ></input>
@@ -116,9 +120,10 @@ const ShowForm = () => {
                 <input
                   onChange={onChangeInput}
                   value={price}
-                  className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                  className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-slate-700  focus:ring-opacity-50"
                   type="text"
                   name="price"
+                  placeholder="ticket price"
                   required
                 ></input>
               </div>

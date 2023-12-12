@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact us</title>
+  </head>
+  <body>
+    <%- include('partials/nav.ejs')%>
+    <h1>Contact us</h1>
+    <form action="/contact" method="post">
+      <input type="text" name="title" placeholder="title" />
+      <input type="text" name="url" placeholder="Url" />
+      <textarea
+        cols="10"
+        rows="10"
+        name="descr"
+        placeholder="Description"
+      ></textarea>
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>

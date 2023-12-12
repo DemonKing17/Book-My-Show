@@ -28,7 +28,7 @@ const SeatsList = () => {
   S_id = parseInt(S_id, 10);
   useEffect(() => {
     getSeatsDetails(S_id);
-  });
+  }, []);
 
   const seatsTotal = [];
   for (let index = 0; index <= show?.theater_capacity; index++) {

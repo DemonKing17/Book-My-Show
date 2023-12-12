@@ -42,13 +42,13 @@ public class ShowServiceImpl implements ShowService {
     @Override
     public ResponseEntity<List<ShowModel>> fetchShows(int movieID, int theaterID) {
         try{
+            System.out.println(movieID+""+theaterID);
             return new ResponseEntity<>(showRepository.fetchShows(movieID, theaterID), HttpStatus.OK);
         }catch(Exception e){
             e.printStackTrace();
         }
         return new ResponseEntity<>(showRepository.fetchShows(movieID, theaterID),HttpStatus.OK);
     }
-
     @Override
     public ResponseEntity<ShowModel> fetchSeats(int showID) {
         try{

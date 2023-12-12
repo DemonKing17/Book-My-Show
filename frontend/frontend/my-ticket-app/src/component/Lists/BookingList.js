@@ -5,7 +5,23 @@ const BookingList = () => {
   const { getBookingDetails, booking } = useContext(BookingContext);
   useEffect(() => {
     getBookingDetails();
-  });
+  }, []);
+
+  //format date
+  const formatDate = (dateString) => {
+    const options = {
+      hour: "numeric",
+      minute: "numeric",
+      month: "numeric",
+      day: "numeric",
+      year: "numeric",
+    };
+    const formattedDate = new Date(dateString).toLocaleDateString(
+      "en-US",
+      options
+    );
+    return formattedDate;
+  };
   return (
     <>
       <section>
@@ -16,7 +32,7 @@ const BookingList = () => {
                 Bookings
               </p>
             </div>
-            <div>
+            <div className="mx-auto">
               <table>
                 <thead>
                   <tr>
@@ -33,7 +49,7 @@ const BookingList = () => {
                         {item.booked_seats}
                       </td>
                       <td className="border-2 px-6 text-left">
-                        {item.booking_time}
+                        {formatDate(item.booking_time)}
                       </td>
                     </tr>
                   ))}

@@ -44,14 +44,14 @@ const reducer = (state, action) => {
         ...state,
         loading: false,
         error: null,
-        userAuth: payload,
+        profile: payload,
       };
     case LOGIN_FAILED: {
       return {
         ...state,
         loading: false,
         error: payload,
-        userAuth: null,
+        profile: null,
       };
     }
     case LOGOUT:
@@ -79,11 +79,11 @@ export const AuthorContextProvider = ({ children }) => {
     };
     try {
       const res = await axios.post(`${API_URL_USER}/login`, formData, config);
-      console.log(res);
+      console.log(res?.data);
       if (res?.status === 200) {
         dispatch({
           type: LOGIN_SUCCESS,
-          payload: res.data,
+          payload: res?.data,
         });
       }
       window.location.href = "/";
@@ -139,8 +139,8 @@ export const AuthorContextProvider = ({ children }) => {
     <AuthContext.Provider
       value={{
         loginUserAction,
-        userAuth: state,
-        token: state?.userAuth,
+        user_type: state?.userAuth?.user_type,
+        token: state?.userAuth?.token,
         logoutAction,
         registerUserAction,
       }}

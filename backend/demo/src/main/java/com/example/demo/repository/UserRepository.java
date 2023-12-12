@@ -15,4 +15,7 @@ public interface UserRepository extends JpaRepository <UserModel,Integer> {
 
     @Query(value = "SELECT u.id FROM UserModel u Where u.token = :token")
     public int getUserIdByToken(@Param("token") String token);
+
+    @Query(value="SELECT u FROM UserModel u WHERE u.email_id = :username")
+    public UserModel getLoginDetails(@Param("username") String username);
 }

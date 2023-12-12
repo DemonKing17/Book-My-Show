@@ -69,7 +69,7 @@ export const TheaterContextProvider = ({ children }) => {
         "content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-        token: `${state?.userAuth}`,
+        token: `${state?.userAuth?.token}`,
       },
     };
     try {
@@ -101,7 +101,7 @@ export const TheaterContextProvider = ({ children }) => {
         "content-type": "application/json",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-        token: `${state?.userAuth}`,
+        token: `${state?.userAuth?.token}`,
       },
     };
     try {

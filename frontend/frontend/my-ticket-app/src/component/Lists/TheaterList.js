@@ -13,7 +13,7 @@ const TheaterList = () => {
   M_id = parseInt(M_id, 10);
   useEffect(() => {
     getTheaterDetails(M_id);
-  });
+  }, []);
   return (
     <>
       <section className="">
@@ -35,7 +35,7 @@ const TheaterList = () => {
                   </p>
                 </div>
               </div>
-              {theater?.length > 0 &&
+              {theater?.length > 0 ? (
                 theater?.map((theater) => {
                   return (
                     <div className="w-3/5" key={theater?.id}>
@@ -51,7 +51,10 @@ const TheaterList = () => {
                       </Link>
                     </div>
                   );
-                })}
+                })
+              ) : (
+                <h2 className="text-2xl">No Theaters Available</h2>
+              )}
             </div>
           </div>
         </div>

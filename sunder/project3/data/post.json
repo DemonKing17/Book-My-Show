@@ -1,0 +1,26 @@
+[
+  {
+    "title": "doo",
+    "url": "http://idontknow.com",
+    "description": "do your job",
+    "id": "2"
+  },
+  {
+    "title": "POSks",
+    "url": "http://someurl.com",
+    "description": "creating post in json using express",
+    "id": "0"
+  },
+  {
+    "title": "POSks",
+    "url": "http://someurl.com",
+    "description": "creating post in json using express",
+    "id": "1"
+  },
+  {
+    "title": "POSks",
+    "url": "http://someurl.com",
+    "description": "creating post in json using express",
+    "id": "3"
+  }
+]

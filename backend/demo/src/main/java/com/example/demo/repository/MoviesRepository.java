@@ -10,8 +10,7 @@ import java.util.List;
 
 public interface MoviesRepository extends JpaRepository<MovieModel,Integer> {
 
-    @Query(value = "SELECT s FROM MovieModel s WHERE s.title=:val")
-    public MovieModel fetchUsingName(@Param("val")String value);
-
+    @Query(value = "SELECT s FROM MovieModel s WHERE s.title=:title")
+    public MovieModel fetchUsingName(@Param("title")String title);
 
 }

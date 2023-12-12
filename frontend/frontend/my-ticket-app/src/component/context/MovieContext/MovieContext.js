@@ -70,7 +70,7 @@ export const MovieContextProvider = ({ children }) => {
         "content-Type": "application/json",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-        token: `${state?.userAuth}`,
+        token: `${state?.userAuth?.token}`,
       },
     };
     try {
@@ -81,6 +81,7 @@ export const MovieContextProvider = ({ children }) => {
           payload: res?.data,
         });
       }
+      window.location.href = "/";
     } catch (error) {
       dispatch({
         type: CREATE_MOVIES_FAIL,
@@ -89,14 +90,14 @@ export const MovieContextProvider = ({ children }) => {
     }
   };
 
-  //GetMovie List
+  //GetMovies List
   const getMovieDetails = async () => {
     const config = {
       headers: {
         "content-type": "application/json",
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-        token: `${state?.userAuth}`,
+        token: `${state?.userAuth?.token}`,
       },
     };
     try {
@@ -117,17 +118,21 @@ export const MovieContextProvider = ({ children }) => {
   };
 
   //get single movie detail
-  const getMovie = async (title) => {
+  const getMovie = async (formData) => {
     const config = {
       headers: {
         "content-Type": "application/json",
-        token: `${state?.userAuth}`,
+        token: `${state?.userAuth?.token}`,
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
       },
     };
     try {
-      const res = await axios.get(`${API_URL_MOVIE}/${title}`, config);
+      const res = await axios.get(
+        `${API_URL_MOVIE}/grtmovie`,
+        formData,
+        config
+      );
       if (res?.status === 200) {
         dispatch({
           type: FETCH_MOVIE_SUCCESS,
@@ -141,6 +146,7 @@ export const MovieContextProvider = ({ children }) => {
       });
     }
   };
+
   return (
     <MovieContext.Provider
       value={{

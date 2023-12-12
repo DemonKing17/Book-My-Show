@@ -29,7 +29,7 @@ const TheaterForm = () => {
   };
   return (
     <>
-      <section className="h-full bg-gradient-to-r from-green-500 to-blue-500">
+      <section className="">
         <div className="container md:px-12 md:py-12 md:mx-auto h-">
           <div className="mx-auto md:px-12 bg-white flex justify-center items-center flex-col rounded-3xl bg-opacity-20 md:h-full ">
             <div className="mx-auto  ">
@@ -47,10 +47,12 @@ const TheaterForm = () => {
                 </label>
                 <input
                   onChange={onChangeInput}
-                  className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                  className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-slate-700  focus:ring-opacity-50"
                   type="text"
                   name="theater_name"
                   value={theater_name}
+                  placeholder="Theater Name"
+                  required
                 ></input>
               </div>
               <div className="mb-6">
@@ -62,10 +64,12 @@ const TheaterForm = () => {
                 </label>
                 <input
                   onChange={onChangeInput}
-                  className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                  className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-slate-700  focus:ring-opacity-50"
                   type="text"
                   name="location"
                   value={location}
+                  placeholder="Theater Location"
+                  required
                 ></input>
               </div>
 
@@ -78,10 +82,11 @@ const TheaterForm = () => {
                 </label>
                 <input
                   onChange={onChangeInput}
-                  className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                  className="appearance-none block w-full p-3 leading-5 text-coolGray-900 border border-coolGray-200 rounded-lg shadow-sm placeholder-coolGray-400 focus:outline-none focus:ring-2 focus:ring-slate-700  focus:ring-opacity-50"
                   type="number"
                   name="capacity"
                   value={capacity}
+                  placeholder="Theater capacity"
                   required
                 ></input>
               </div>

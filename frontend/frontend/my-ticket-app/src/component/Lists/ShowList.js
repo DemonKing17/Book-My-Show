@@ -13,8 +13,15 @@ const ShowList = () => {
   T_id = parseInt(T_id, 10);
   useEffect(() => {
     getShowDetails(M_id, T_id);
-  });
-
+  }, []);
+  const formatDate = (dateString) => {
+    const options = { year: "numeric", month: "numeric", day: "numeric" };
+    const formattedDate = new Date(dateString).toLocaleDateString(
+      "en-US",
+      options
+    );
+    return formattedDate;
+  };
   return (
     <>
       <section className="">
@@ -36,7 +43,7 @@ const ShowList = () => {
                   </p>
                 </div>
               </div>
-              {show?.length > 0 &&
+              {show?.length > 0 ? (
                 show?.map((show) => {
                   return (
                     <div className="w-3/5" key={show?.id}>
@@ -46,13 +53,16 @@ const ShowList = () => {
                             {show?.show_time}
                           </p>
                           <p className="md:p-4 p-2 md:text-4xl text-2xl text-zinc-500">
-                            {show?.show_date}
+                            {formatDate(show?.show_date)}
                           </p>
                         </div>
                       </Link>
                     </div>
                   );
-                })}
+                })
+              ) : (
+                <h2 className="text-2xl">No Shows Available</h2>
+              )}
             </div>
           </div>
         </div>

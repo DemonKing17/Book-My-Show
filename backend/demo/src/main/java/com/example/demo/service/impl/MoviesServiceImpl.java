@@ -4,10 +4,13 @@ import com.example.demo.model.MovieListResponse;
 import com.example.demo.model.MovieModel;
 import com.example.demo.repository.MoviesRepository;
 import com.example.demo.service.MovieService;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+
+
 
 import java.util.List;
 
@@ -19,7 +22,8 @@ public class MoviesServiceImpl implements MovieService {
     @Override
     public ResponseEntity<String> createMovieDetails(MovieModel movieModel) {
         try {
-            moviesRepository.save(movieModel);
+            MovieModel savedMovie = moviesRepository.save(movieModel);
+            moviesRepository.save(savedMovie);
             return new ResponseEntity<> ("success",HttpStatus.OK);
         }catch(Exception e){
             e.printStackTrace();
@@ -47,4 +51,5 @@ public class MoviesServiceImpl implements MovieService {
             return new MovieListResponse(null);
         }
     }
+
 }

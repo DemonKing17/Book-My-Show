@@ -12,8 +12,8 @@ public interface ShowRepository extends JpaRepository <ShowModel,Integer> {
     @Query(value = "SELECT s FROM ShowModel s " +
             "JOIN TheaterModel t ON s.theater_id = t.id " +
             "JOIN MovieModel m ON s.movie_id = m.id " +
-            "WHERE m.id = :movieId " +
-            "AND t.id = :theaterId")
+            "WHERE m.id = :theaterId " +
+            "AND t.id = :movieId")
     public List<ShowModel> fetchShows(@Param("movieId") int movieID,@Param("theaterId") int theaterID);
 
     @Query(value = "SELECT s FROM ShowModel s "+
