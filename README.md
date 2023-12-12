@@ -89,3 +89,5 @@ The Movie Ticket Booking App is a web application designed to facilitate the boo
 The Movie Ticket Booking App provides a seamless and enjoyable experience for users to book movie tickets online. With a user-friendly interface and robust features, it meets the demands of modern moviegoers.
 
 Feel free to customize this template based on your specific project details and requirements.
+![Sample Image](https://github.com/username/repo/raw/main/images/sample-image.png)
+
